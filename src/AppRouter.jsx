@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import styled from '@emotion/styled'
+import {Box} from '@mui/material'
 import Header from './components/Header'
 
 const MainContainer = styled(Box)({
@@ -21,7 +23,7 @@ const AppRouter = () => {
             {/* <Route path="/" element={<ProductList setCount={setCount} />} /> */}
             </Routes>
         </Content>
-        <Footer />
+        {/* <Footer /> */}
       </MainContainer>
     </BrowserRouter>
   )

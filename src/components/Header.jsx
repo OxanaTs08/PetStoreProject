@@ -1,7 +1,15 @@
 import { AppBar, Badge, Box, styled, Toolbar } from '@mui/material'
 import logo from '../assets/logo.svg'
 
-export const Header = () => {
+const StyledNavLink = styled(NavLink)(() => ({
+  color: 'rgba(40, 40, 40, 1)',
+  textDecoration: 'none',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+}))
+
+const Header = () => {
 
   return (
     <AppBar
@@ -32,3 +40,5 @@ export const Header = () => {
     </AppBar>
   )
 }
+
+export default Header
