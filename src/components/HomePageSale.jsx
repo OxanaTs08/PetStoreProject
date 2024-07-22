@@ -7,6 +7,18 @@ import {NavLink} from "react-router-dom";
 import MainButton from "./organisms/MainButton";
 import {addToCart} from "../redux/slice/CartSlice";
 
+
+const Image = styled('img')(() => ({
+    borderRadius: '10px',
+    width: '100%',
+    height: '280px',
+    objectFit: 'cover',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+})
+)
+
 const StyledNavLink = styled(NavLink)(() => ({
   color: 'rgba(40, 40, 40, 1)',
   textDecoration: 'none',
@@ -100,15 +112,8 @@ const handleAddToCartClick =(product) => (event) => {
                             overflow: 'hidden',
                             borderRadius: '10px'
                             }}>                       
-                      <img src={`http://localhost:3333/${product.image}`} 
-                         alt={product.title}
-                         sx={{borderRadius: '10px',
-                              width: '100%',
-                              height: 'auto',
-                              objectFit: 'cover',
-                              position: 'absolute',
-                              top: 0,
-                              left: 0,}} />
+                      <Image src={`http://localhost:3333/${product.image}`}
+                         alt={product.title}/>
                       <Box sx={{position: 'absolute',
                                 top: '10px',
                                 right: '10px',

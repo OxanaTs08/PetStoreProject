@@ -3,6 +3,7 @@ import CartSummary from "./CartSummary"
 import { Box } from '@mui/system'
 import TitleDivider from "../../components/TitleDivider"
 import { useDispatch, useSelector } from "react-redux"
+import {Grid} from "@mui/material";
 
 
 const Cart = () => {
@@ -16,10 +17,14 @@ const Cart = () => {
   return (
     <Box>
       <TitleDivider title="Shopping cart" buttonTitle="Back to the store" buttonPath="/products/" />
-      <Box sx={{display: 'flex', flexDirection: 'row', gap: '20px'}}>
+        <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12} md={8}>
         <CartList cartList={cartList} updateCount={handleUpdateCount} />
-        <CartSummary cartList={cartList} />
-      </Box>
+        </Grid>
+        <Grid item xs={12} md={4}>
+        <CartSummary cartList={cartList}/>
+        </Grid>
+        </Grid>
     </Box>
   )
 }

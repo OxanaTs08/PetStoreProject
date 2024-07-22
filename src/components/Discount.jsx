@@ -29,6 +29,14 @@ const StyledButton = styled(Button)(() => ({
   },
 }))
 
+const BackgroundImage = styled('img')(() => ({
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignSelf: 'flex-end',
+
+}))
+
 const Discount = () => {
   const dispatch = useDispatch()
   const [name, setName] = useState("");
@@ -65,8 +73,8 @@ const Discount = () => {
     <Box sx={{display: 'flex', 
              flexDirection: 'column', 
              gap: '24px', 
-             borderRadius: '8px', 
-             padding: '32px', 
+             borderRadius: '8px',
+             paddingTop: '32px',
              backgroundColor: 'rgba(36, 81, 198, 1)',
              marginTop: '80px',
              }}>
@@ -76,11 +84,9 @@ const Discount = () => {
                     }}>5% off on the first order</Typography>
       </Box>
       <Box sx={{display: 'flex', flexDirection: 'row', gap: '32px',}}>
-        <Box sx={{marginBottom: '-32px', marginLeft:`-32px`}} >
-          <img src={discountimage} alt="discountimage"/>
-        </Box>
+        <BackgroundImage src={discountimage} alt="discountimage"/>
         <Box sx={{width: '100%'}}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} style={{padding: '32px'}}>
             <Box sx={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
               <StyledTextField
                 label="Name"

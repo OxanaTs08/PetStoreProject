@@ -12,19 +12,17 @@ const StyledNavLink = styled(NavLink)(() => ({
 
 const TitleDivider = ({title, buttonTitle, buttonPath}) => {
   return (
-    <Box sx={{display: "flex", flexDirection: "raw", padding: '20px 0', gap: '30px', alignItems: "center", marginTop: '80px' }}>
-    <Typography variant='h3' sx={{fontWeight: "bold"}} >
+    <Box sx={{display: "flex", flexDirection: "raw", padding: '20px 0', alignItems: "center", marginTop: '80px', justifyContent:'space-between' }}>
+    <Typography variant='h3' sx={{fontWeight: "bold", flexWrap: 'nowrap', display: 'flex', paddingRight: '30px'}} >
       {title}
     </Typography>
-    <Box sx={{display: "flex", flexDirection: "raw", alignItems: "center", width: '95%' }}>
-      <Divider sx={{color: 'rgba(221, 221, 221, 1)', 
-                  height: '2px',
-                  width: '85%', 
-                  borderColor: 'gba(221, 221, 221, 1)',
-      }}/>
-      <StyledNavLink to={buttonPath}> <ButtonInTitle buttonTitle={buttonTitle} /> </StyledNavLink>
-    </Box>
-    
+    <Divider sx={{color: 'rgba(221, 221, 221, 1)',
+        height: '2px',
+        flexGrow: 1,
+        borderColor: 'gba(221, 221, 221, 1)',
+    }}/>
+    <StyledNavLink to={buttonPath}> <ButtonInTitle buttonTitle={buttonTitle} /> </StyledNavLink>
+
     </Box>
   )
 }

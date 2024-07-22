@@ -16,7 +16,14 @@ const StyledNavLink = styled(NavLink)(() => ({
   },
 }))
 
+const Image = styled('img')(() => ({
+    width: '200px',
+    height: '200px',
+    objectFit: 'cover',
+    }));
+
 const CartItem = ({item, updateCount}) => {
+    const [quantity, setQuantity] = useState(1)
   const dispatch = useDispatch()
 
   const deleteItem = (id) => {
@@ -34,14 +41,14 @@ const CartItem = ({item, updateCount}) => {
               width: '100%',
               height: '180px', 
               overflow: 'hidden' }}>
-      <img src={`http://localhost:3333/${item.image}`} alt={item.title} sx={{width: '50px', height: '50px',objectFit: 'contained'}}/>
+      <Image src={`http://localhost:3333/${item.image}`} alt={item.title}/>
       <Box sx={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
         <Box sx={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
         <StyledNavLink to={`/products/${item.id}`}><Typography>{item.title}</Typography></StyledNavLink>
            <Button variant="text" onClick={() => deleteItem(item.id)}>x</Button>
         </Box>
         <Box sx={{display: 'flex', flexDirection: 'row', gap: '10px', alignItems: 'center'}}>
-          <Counter item={item} updateCount={updateCount} />
+          <Counter item={item} cart/>
           {item.discont_price ? (
           <>
           <Typography variant='h4' sx={{ fontWeight: 'bold' }}>${item.discont_price}</Typography>

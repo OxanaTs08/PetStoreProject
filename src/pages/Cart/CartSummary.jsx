@@ -6,8 +6,7 @@ import { sendOrder } from "../../redux/slice/CartSlice"
 import MainButton from "../../components/organisms/MainButton"
 
 const StyledPaper = styled(Paper)({
-  width: '70%',
-  padding: '20px', 
+  padding: '20px',
   display: 'flex', 
   flexDirection: 'column', 
   gap: '20px',
@@ -16,10 +15,8 @@ const StyledPaper = styled(Paper)({
 })
 
 const StyledTextField = styled(TextField)(() => ({
-  width: '100%',
   border: 'none',
   borderRadius: '8px',
-  width: '100%',
   input: { color: 'rgba(255, 255, 255, 1)' },
   backgroundColor: 'rgba(255, 255, 255, 1)'
 })
@@ -123,7 +120,7 @@ const CartSummary = ({cartList}) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <MainButton buttonText="Order" onClick={handleConfirmOrder} sx={{width: '100%'}}/>
+              <MainButton buttonText="Order" onClick={handleConfirmOrder}/>
             </Box> 
           </form>
         </Stack>

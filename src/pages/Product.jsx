@@ -1,17 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productById } from "../redux/slice/productsSlice";
-import { addToCart } from "../redux/slice/CartSlice";
+import {addSpecificAmountToCart, addToCart} from "../redux/slice/CartSlice";
 import { Box, Typography, Divider } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import MainButton from "../components/organisms/MainButton";
 import Counter from "../components/organisms/Counter";
+import {categoryById} from "../redux/slice/categoriesSlice.js";
 
 
 const Product = () => {
+    const [quantity, setQuantity] = useState(1);
     const { productId } = useParams();
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,7 +40,7 @@ const Product = () => {
     const productDiscontPrice = productData?.[0]?.discont_price;
     const productDescription = productData?.[0]?.description;
     const productCategory = productData?.[0]?.categoryId;
-    
+
     const getDiscountPercentage = (price, discountPrice) => {
         if (discountPrice == null) {
             return null;
@@ -53,9 +56,9 @@ const Product = () => {
           price: productData[0].price,
           discont_price: productData[0].discont_price,
           image: productData[0].image,
-          quantity: 1,
+          quantity: quantity,
         }
-        dispatch(addToCart(item))
+        dispatch(addSpecificAmountToCart(item))
     };
 
     return (
@@ -98,7 +101,7 @@ const Product = () => {
                   )}
                   </Box>
                   <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '10px', justifyContent: 'space-between' }}>
-                    <Counter item={productData[0]} sx={{width: '45%'}} />
+                    <Counter item={productData[0]} quantity={quantity} setQuantity={setQuantity} sx={{width: '45%'}} />
                     <MainButton onClick={(event) => handleAddToCartClick(event)} buttonText='Add to Cart' sx={{width: '45%'}} />
                   </Box>
                   <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Description</Typography>
