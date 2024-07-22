@@ -28,7 +28,7 @@ const Header = () => {
     >
       <Toolbar sx={{justifyContent: 'space-between'}}>
         <Box sx={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-          <img src={logo} alt="logo" />
+        <StyledNavLink  to="/"><img src={logo} alt="logo" /></StyledNavLink>
           <Box sx={{
               display: 'flex',
               justifyContent: 'space-between',

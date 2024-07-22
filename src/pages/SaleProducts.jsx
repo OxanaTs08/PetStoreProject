@@ -131,6 +131,7 @@ const SaleProducts = () => {
       title: product.title,
       price: product.price,
       discont_price: product.discont_price,
+      image: product.image,
       quantity: 1,
     }
     dispatch(addToCart(item))

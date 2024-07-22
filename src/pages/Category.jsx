@@ -138,6 +138,7 @@ const Category = () => {
           title: product.title,
           price: product.price,
           discont_price: product.discont_price,
+          image: product.image,
           quantity: 1,
         }
         dispatch(addToCart(item))
@@ -230,7 +231,7 @@ const Category = () => {
                          sx={{borderRadius: '10px',
                               width: '100%',
                               height: '284px',
-                              objectFit: 'cover',
+                              objectFit: 'contain',
                               position: 'absolute',
                               top: 0,
                               left: 0,

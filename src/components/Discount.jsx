@@ -4,14 +4,12 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { saleRequestSend } from "../redux/slice/saleRequestSlice"
 
-
 const StyledTextField = styled(TextField)(() => ({
   width: '100%',
   border: '1px solid rgba(255, 255, 255, 1)',
   borderRadius: '8px',
-  width: '100%',
-  '&:input': {
-    color: 'rgba(255, 255, 255, 1) !important',
+  '& label': {
+    color: 'rgba(255, 255, 255, 1)',
   },
 })
 )
@@ -51,15 +49,17 @@ const Discount = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!nameError ) {
+    if (!nameError && name && email && phone) {
       setSubmittedData({name, email, phone})
       setName("")
       setEmail("")
       setPhone("")
-    }
     const clientData = {name, email, phone}
     dispatch(saleRequestSend(clientData)),  
     console.log( clientData)
+    } else {
+      alert("Please fill in all fields")
+    }
   }
   return (
     <Box sx={{display: 'flex', 
@@ -76,14 +76,13 @@ const Discount = () => {
                     }}>5% off on the first order</Typography>
       </Box>
       <Box sx={{display: 'flex', flexDirection: 'row', gap: '32px',}}>
-        <Box >
+        <Box sx={{marginBottom: '-32px', marginLeft:`-32px`}} >
           <img src={discountimage} alt="discountimage"/>
         </Box>
         <Box sx={{width: '100%'}}>
           <form onSubmit={handleSubmit}>
             <Box sx={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
               <StyledTextField
-                variant="filled"
                 label="Name"
                 fullWidth
                 margin="normal"
@@ -97,16 +96,14 @@ const Discount = () => {
                 onChange={handleNameChange}
               />
               <StyledTextField
-                variant="filled"
                 label="Phone Number"
                 fullWidth
                 margin="normal"
                 type="text"
                 value={phone}
-               onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
               />
               <StyledTextField
-                variant="filled"
                 label="Enter Your Email"
                 fullWidth
                 margin="normal"

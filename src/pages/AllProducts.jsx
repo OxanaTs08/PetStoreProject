@@ -136,6 +136,7 @@ const AllProducts = () => {
           id: product.id,
           title: product.title,
           price: product.price,
+          image: product.image,
           discont_price: product.discont_price,
           quantity: 1,
         }
@@ -227,9 +228,8 @@ const AllProducts = () => {
                       <img src={`http://localhost:3333/${product.image}`} 
                          alt={product.title}
                          sx={{borderRadius: '10px',
-                              width: '100%',
-                              height: '100%',
-                              maxHeight: '200px',
+                              width: '200px',
+                              height: '200px',
                               objectFit: 'cover',
                               objectPosition: 'center',
                               position: 'absolute',
@@ -258,7 +258,7 @@ const AllProducts = () => {
                                      overflow: 'hidden',
                                     textOverflow: 'ellipsis'
                         }}>{product.title}</Typography> 
-                    <Box sx={{display: "flex", flexDirection: "row", gap: '16px', alignItems: 'end'}}>
+                    <Box sx={{display: "flex", flexDirection: "row", gap: '16px', alignItems: 'center', padding: '32px'}}>
                     {product.discont_price ? (
                         <>
                             <Typography sx={{ fontSize: '40px', fontWeight: 'bold' }}>${product.discont_price}</Typography>

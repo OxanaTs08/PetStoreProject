@@ -37,7 +37,6 @@ const Product = () => {
     const productDiscontPrice = productData?.[0]?.discont_price;
     const productDescription = productData?.[0]?.description;
     const productCategory = productData?.[0]?.categoryId;
-
     
     const getDiscountPercentage = (price, discountPrice) => {
         if (discountPrice == null) {
@@ -53,6 +52,7 @@ const Product = () => {
           title: productData[0].title,
           price: productData[0].price,
           discont_price: productData[0].discont_price,
+          image: productData[0].image,
           quantity: 1,
         }
         dispatch(addToCart(item))
@@ -97,9 +97,9 @@ const Product = () => {
                   </>
                   )}
                   </Box>
-                  <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '10px' }}>
-                    <Counter item={productData[0]} />
-                    <MainButton onClick={(event) => handleAddToCartClick(event)} buttonText='Add to Cart' />
+                  <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '10px', justifyContent: 'space-between' }}>
+                    <Counter item={productData[0]} sx={{width: '45%'}} />
+                    <MainButton onClick={(event) => handleAddToCartClick(event)} buttonText='Add to Cart' sx={{width: '45%'}} />
                   </Box>
                   <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Description</Typography>
                   <Typography>{productDescription}</Typography>

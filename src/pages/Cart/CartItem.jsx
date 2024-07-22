@@ -32,8 +32,9 @@ const CartItem = ({item, updateCount}) => {
               gap: '10px', 
               padding: '10px', 
               width: '100%',
-              height: '180px' }}>
-      <img src={`http://localhost:3333/${item.image}`} alt={item.title} />
+              height: '180px', 
+              overflow: 'hidden' }}>
+      <img src={`http://localhost:3333/${item.image}`} alt={item.title} sx={{width: '50px', height: '50px',objectFit: 'contained'}}/>
       <Box sx={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
         <Box sx={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
         <StyledNavLink to={`/products/${item.id}`}><Typography>{item.title}</Typography></StyledNavLink>
