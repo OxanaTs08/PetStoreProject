@@ -9,6 +9,7 @@ import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import MainButton from "../components/organisms/MainButton";
 import Counter from "../components/organisms/Counter";
 import DiscountPercentage from "../components/organisms/DiscountPercentage.jsx";
+import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
 
 const Image = styled('img')(() => ({
   borderRadius: '10px',
@@ -60,17 +61,16 @@ const Product = () => {
     dispatch(addSpecificAmountToCart(item))
   };
 
+  const breadCrumbs = [
+    { title: 'Main Page', link: '/' },
+    { title: 'Categories', link: '/categories' },
+    { title: productCategory, link: `/categories/${productCategory}` },
+    { title: productTitle, link: location.pathname }
+    ];
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: '40px' }}>
-      <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <NavLink to='/'><ButtonInTitle buttonTitle='Main Page' /></NavLink>
-        <Divider sx={{ color: 'rgba(221, 221, 221, 1)', height: '2px', width: '16px', borderColor: 'rgba(221, 221, 221, 1)' }} />
-        <NavLink to='/categories'><ButtonInTitle buttonTitle='Categories' /></NavLink>
-        <Divider sx={{ color: 'rgba(221, 221, 221, 1)', height: '2px', width: '16px', borderColor: 'rgba(221, 221, 221, 1)' }} />
-        <NavLink><ButtonInTitle buttonTitle={productCategory} /></NavLink>
-        <Divider sx={{ color: 'rgba(221, 221, 221, 1)', height: '2px', width: '16px', borderColor: 'rgba(221, 221, 221, 1)' }} />
-        <NavLink to={location.pathname}><ButtonInTitle buttonTitle={productTitle} /></NavLink>
-      </Box>
+      <BreadcrumbsComponent breadcrumbs={breadCrumbs} />
       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '40px' }}>
       <Box sx={{width: '50%', height: '780px', overflow: 'hidden'}}>
         <Image src={`http://localhost:3333/${productData?.[0]?.image}`} alt={productTitle}/>

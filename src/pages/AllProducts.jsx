@@ -8,6 +8,7 @@ import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import {useState} from "react";
 import FilterDefinition from "../components/FilterDefinition.jsx";
 import ProductCard from "../components/ProductCard.jsx";
+import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
 
 
 const StyledNavLink = styled(NavLink)(() => ({
@@ -37,23 +38,15 @@ const AllProducts = () => {
         return <div>{message.message}</div>;
     }
 
+    const breadCrumbs = [
+        {title: 'Main Page', link: '/'},
+        {title: 'Categories', link: '/categories'},
+        {title: 'All Products', link: location.pathname}
+    ];
+
     return (
         <Box sx={{display: "flex", flexDirection: "column", gap: '40px'}}>
-          <Box sx={{display: "flex", flexDirection: "row", alignItems: "center" }}>
-            <NavLink to='/'><ButtonInTitle buttonTitle='Main Page'/></NavLink>
-            <Divider sx={{color: 'rgba(221, 221, 221, 1)', 
-                  height: '2px',
-                  width: '16px', 
-                  borderColor: 'gba(221, 221, 221, 1)',
-            }}/>
-            <NavLink to='/categories'><ButtonInTitle buttonTitle='Categories'/></NavLink>
-            <Divider sx={{color: 'rgba(221, 221, 221, 1)', 
-                  height: '2px',
-                  width: '16px', 
-                  borderColor: 'gba(221, 221, 221, 1)',
-            }}/>
-            <NavLink to={location.pathname}><ButtonInTitle buttonTitle='All Products'/></NavLink>
-          </Box>
+          <BreadcrumbsComponent breadcrumbs={breadCrumbs}/>
           <PageTitle title='All Products'/>
             <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products}/>
             <Grid container spacing={2} justifyContent="center" grid-auto-rows="1fr">

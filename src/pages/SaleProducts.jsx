@@ -8,6 +8,7 @@ import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import {useState} from "react";
 import FilterDefinition from "../components/FilterDefinition.jsx";
 import ProductCard from "../components/ProductCard.jsx";
+import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
 
 const SaleProducts = () => {
   const dispatch = useDispatch();
@@ -26,18 +27,16 @@ const SaleProducts = () => {
   if (isError) {
       return <div>{message.message}</div>;
   }
+
+  const breadCrumbs = [
+        {title: 'Main Page', link: '/'},
+        {title: 'All Sales', link: '/products/sale'},
+    ];
   
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: '40px'}}>
-      <Box sx={{display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <NavLink to='/'><ButtonInTitle buttonTitle='Main Page'/></NavLink>
-        <Divider sx={{color: 'rgba(221, 221, 221, 1)', 
-                  height: '2px',
-                  width: '16px', 
-                  borderColor: 'gba(221, 221, 221, 1)',
-        }}/>
-        <NavLink to='/products/sale'><ButtonInTitle buttonTitle='All Sales'/></NavLink>
-      </Box>
+
+        <BreadcrumbsComponent breadcrumbs={breadCrumbs}/>
       <PageTitle title='Discounted Items'/>
       <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products} onSale/>
       <Grid container spacing={2} justifyContent="center" grid-auto-rows='1fr'>

@@ -9,6 +9,7 @@ import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import {useState} from "react";
 import ProductCard from "../components/ProductCard";
 import FilterDefinition from "../components/FilterDefinition.jsx";
+import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
 
 const Category = () => {
   const { categoryId } = useParams();
@@ -31,24 +32,15 @@ const Category = () => {
   if (isError) {
     return <div>{message.message}</div>;
   }
+  const breadCrumbs = [
+    {title: 'Main Page', link: '/'},
+    {title: 'Categories', link: '/categories'},
+    {title: categoryTitle, link: location.pathname}
+  ];
     
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: '40px'}}>
-      <Box sx={{display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <NavLink to='/'><ButtonInTitle buttonTitle='Main Page'/></NavLink>
-        <Divider sx={{color: 'rgba(221, 221, 221, 1)', 
-                  height: '2px',
-                  width: '16px', 
-                  borderColor: 'gba(221, 221, 221, 1)',
-        }}/>
-        <NavLink to='/categories'><ButtonInTitle buttonTitle='Categories'/></NavLink>
-        <Divider sx={{color: 'rgba(221, 221, 221, 1)', 
-                  height: '2px',
-                  width: '16px', 
-                  borderColor: 'gba(221, 221, 221, 1)',
-        }}/>
-        <NavLink to={location.pathname}><ButtonInTitle buttonTitle={categoryTitle}/></NavLink>
-      </Box>
+      <BreadcrumbsComponent breadcrumbs={breadCrumbs}/>
       <PageTitle title={categoryTitle}/>
       <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={categoryProducts}/>
       <Grid container spacing={2} justifyContent="center">
