@@ -77,19 +77,23 @@ const ProductCard = ({product}) => {
                                   border: ' 1px solid rgba(221, 221, 221, 1)', 
                                   borderRadius: '10px',
                                   position: 'relative'}}>
-            <Box sx={{position: 'relative',
-                      width: '100%',
-                      height: '284px',
-                      overflow: 'hidden',
-                      borderRadius: '10px'
-                      }}>                       
-              <Image src={`http://localhost:3333/${product.image}`}alt={product.title}/>
-              <DiscountPercentage  price={product.price} discountPrice={product.discont_price}/>
-              <CartButtonBox className="add-to-cart-button" >
-                <MainButton 
-                  onClick={handleAddToCartClick(product)}
-                  buttonText='Add to Cart' sx={{width: '100%'}} />
-                </CartButtonBox> 
+          <Box sx={{position: 'relative',
+                    width: '100%',
+                    height: '284px',
+                    overflow: 'hidden',
+                    borderRadius: '10px'
+                    }}>                       
+            <Image src={`http://localhost:3333/${product.image}`}alt={product.title}/>
+            {product.discont_price && (       
+              <DiscountPercentage price={product.price} discountPrice={product.discont_price} sx={{position: 'absolute',
+              top: '10px',
+              right: '10px'}}/>
+            )}
+            <CartButtonBox className="add-to-cart-button" >
+              <MainButton 
+                onClick={handleAddToCartClick(product)}
+                buttonText='Add to Cart' sx={{width: '100%'}} />
+              </CartButtonBox> 
             </Box>           
             <Box sx={{padding: '0 32px'}}>        
               <Typography sx={{textAlign: "center",
