@@ -31,6 +31,7 @@ export const categoryById = createAsyncThunk(
             console.log(response.data);
             console.log(categoryId);
             console.log(`${API_URL}/${categoryId}`)
+            console.log(response.data);
             return response.data;
         } catch (error) {
             const message = error.response.data.message;
@@ -39,17 +40,24 @@ export const categoryById = createAsyncThunk(
     }
 );
 
+const initialState = {
+    categories: null,
+    categoryData: null,
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    message: '',
+};
+
+
 const categoriesSlice = createSlice({
     name: 'category',
-    initialState: {
-        categories: null,
-        categoryData: null,
-        isLoading: false,
-        isError: false,
-        isSuccess: false,
-        message: '',
+    initialState: initialState,
+    reducers: {
+        resetState: (state) => {
+            return initialState;
+        }
     },
-    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(allCategories.pending, (state) => {
@@ -69,9 +77,15 @@ const categoriesSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(categoryById.fulfilled, (state, action) => {
+                if (action.payload.status === 'ERR') {
+                    state.isLoading = false;
+                    state.isError = true;
+                    state.message = action.payload.message;
+                } else {
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.categoryData = action.payload;
+                }
             })
             .addCase(categoryById.rejected, (state, action) => {
                 state.isLoading = false;
@@ -81,4 +95,5 @@ const categoriesSlice = createSlice({
     },
 });
 
+export const { resetState } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

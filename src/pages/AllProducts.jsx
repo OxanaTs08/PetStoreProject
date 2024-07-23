@@ -51,7 +51,7 @@ const AllProducts = () => {
             <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products}/>
             <Grid container spacing={2} justifyContent="center" grid-auto-rows="1fr">
               {filteredProducts && filteredProducts.map((product) => (
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item xs={12} sm={6} md={3} key={product.id}>
                 <ProductCard product={product}/>
               </Grid>  
             ))}

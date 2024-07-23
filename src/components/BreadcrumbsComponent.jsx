@@ -6,7 +6,7 @@ const BreadcrumbsComponent = ({ breadcrumbs }) => {
     return (
         <Box sx={{display: "flex", flexDirection: "row", alignItems: "center" }}>
             {breadcrumbs.map((breadcrumb, index) => (
-                <>
+                <div key={breadcrumb.title}>
                 <NavLink to={breadcrumb.link}><ButtonInTitle buttonTitle={breadcrumb.title}/></NavLink>
                 {index !== breadcrumbs.length - 1 && (
                     <Divider sx={{color: 'rgba(221, 221, 221, 1)',
@@ -15,7 +15,7 @@ const BreadcrumbsComponent = ({ breadcrumbs }) => {
                     borderColor: 'gba(221, 221, 221, 1)',
                 }}/>
                 )}
-                </>
+                </div>
             ))}
 
         </Box>

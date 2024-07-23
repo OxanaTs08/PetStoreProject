@@ -1,10 +1,8 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {allProducts} from "../redux/slice/productsSlice";
-import {Box, Grid, Divider} from "@mui/material";
-import {NavLink} from "react-router-dom";
+import {allProducts, resetState} from "../redux/slice/productsSlice";
+import {Box, Grid} from "@mui/material";
 import PageTitle from "../components/organisms/PageTitle";
-import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import {useState} from "react";
 import FilterDefinition from "../components/FilterDefinition.jsx";
 import ProductCard from "../components/ProductCard.jsx";
@@ -12,13 +10,14 @@ import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
 
 const SaleProducts = () => {
   const dispatch = useDispatch();
-  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
+      dispatch(resetState());
       dispatch(allProducts());
-  }, [ dispatch]);
+  }, [dispatch]);
 
   const { products, isLoading, isError, message } = useSelector((state) => state.products);
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   if (isLoading) {
       return <div>Loading...</div>;

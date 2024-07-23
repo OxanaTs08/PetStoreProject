@@ -10,6 +10,7 @@ import {useState} from "react";
 import ProductCard from "../components/ProductCard";
 import FilterDefinition from "../components/FilterDefinition.jsx";
 import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
+import PageNotFound from "./PageNotFound.jsx";
 
 const Category = () => {
   const { categoryId } = useParams();
@@ -20,7 +21,7 @@ const Category = () => {
     dispatch(categoryById(categoryId));
   }, [categoryId, dispatch]);
 
-  const { categoryData, isLoading, isError, message } = useSelector((state) => state.categories);
+  const { categoryData, isLoading, isError } = useSelector((state) => state.categories);
 
   const categoryTitle = categoryData?.category?.title;
   const categoryProducts = categoryData?.data ? [...categoryData.data] : [];
@@ -30,8 +31,9 @@ const Category = () => {
   }
 
   if (isError) {
-    return <div>{message.message}</div>;
+    return <PageNotFound />;
   }
+
   const breadCrumbs = [
     {title: 'Main Page', link: '/'},
     {title: 'Categories', link: '/categories'},

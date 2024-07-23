@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
+import {initializedState} from "react-slick/lib/utils/innerSliderUtils.js";
 
 const API_URL = 'http://localhost:3333/products';
 
@@ -33,17 +34,23 @@ export const productById = createAsyncThunk(
     }
 );
 
+const initialState = {
+    products: null,
+    productData: null,
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    message: '',
+};
+
 const productsSlice = createSlice({
     name: 'products',
-    initialState: {
-        products: null,
-        productData: null,
-        isLoading: false,
-        isError: false,
-        isSuccess: false,
-        message: '',
+    initialState: initialState,
+    reducers: {
+        resetState: (state) => {
+            return initialState;
+        }
     },
-    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(allProducts.pending, (state) => {
@@ -63,9 +70,15 @@ const productsSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(productById.fulfilled, (state, action) => {
+                if (action.payload.status === 'ERR') {
+                    state.isLoading = false;
+                    state.isError = true;
+                    state.message = action.payload.message;
+                } else {
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.productData = action.payload;
+                }
             })
             .addCase(productById.rejected, (state, action) => {
                 state.isLoading = false;
@@ -75,4 +88,5 @@ const productsSlice = createSlice({
     },
 });
 
+export const { resetState } = productsSlice.actions;
 export default productsSlice.reducer;

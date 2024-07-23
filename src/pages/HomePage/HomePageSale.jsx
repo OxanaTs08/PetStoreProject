@@ -28,7 +28,7 @@ const HomePageSale = () => {
         <TitleDivider title="Sales" buttonTitle="All Sales" buttonPath="/products/sale" />
           <Grid container spacing={2} justifyContent="center">
           {discountedProducts && discountedProducts.slice(0, 4).map((product) => (
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} md={3} key={product.id}>
               <ProductCard product={product} />
             </Grid>  
           ))}

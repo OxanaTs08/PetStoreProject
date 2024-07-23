@@ -1,4 +1,4 @@
-import {allCategories} from "../redux/slice/categoriesSlice";
+import {allCategories, resetState} from "../redux/slice/categoriesSlice";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PageTitle from "../components/organisms/PageTitle";
@@ -18,6 +18,7 @@ const ListCategories = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(resetState());
         dispatch(allCategories());
     }, [ dispatch]);
 
@@ -46,8 +47,8 @@ const ListCategories = () => {
             <Grid container spacing={2} justifyContent="center">
               {categories && categories.map((category) => (
               
-              <Grid item xs={12} sm={6} md={3}>
-                <StyledNavLink to={`/categories/${category.id}`} key={category.id}>
+              <Grid item xs={12} sm={6} md={3} key={category.id}>
+                <StyledNavLink to={`/categories/${category.id}`}>
                 <Box sx={{display: "flex", flexDirection: "column", gap: '16px'}}>
                     <img src={`http://localhost:3333/${category.image}`} 
                          alt={category.title}

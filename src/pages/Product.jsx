@@ -10,6 +10,7 @@ import MainButton from "../components/organisms/MainButton";
 import Counter from "../components/organisms/Counter";
 import DiscountPercentage from "../components/organisms/DiscountPercentage.jsx";
 import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
+import PageNotFound from "./PageNotFound.jsx";
 
 const Image = styled('img')(() => ({
   borderRadius: '10px',
@@ -28,14 +29,14 @@ const Product = () => {
     dispatch(productById(productId));
   }, [productId, dispatch]);
 
-  const { productData, isLoading, isError, message } = useSelector((state) => state.products);
+  const { productData, isLoading, isError } = useSelector((state) => state.products);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (isError) {
-    return <div>{message}</div>;
+    return <PageNotFound />;
   }
 
   if (!productData) {

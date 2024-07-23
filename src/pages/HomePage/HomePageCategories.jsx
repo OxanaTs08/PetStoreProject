@@ -35,7 +35,7 @@ const HomePageCategories = () => {
           <TitleDivider title="Categories" buttonTitle="All Categories" buttonPath="/categories" />
             <Grid container spacing={2} justifyContent="center">
               {categories && categories.slice(0, 4).map((category) => (
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item xs={12} sm={6} md={3} key={category.id}>
                  <StyledNavLink to={`/categories/${category.id}`} key={category.id}>
                 <Box key={category.id} sx={{display: "flex", flexDirection: "column", gap: '16px'}}>
                     <img src={`http://localhost:3333/${category.image}`} 
