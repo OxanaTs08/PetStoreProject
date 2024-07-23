@@ -85,9 +85,10 @@ const ProductCard = ({product}) => {
                     }}>                       
             <Image src={`http://localhost:3333/${product.image}`}alt={product.title}/>
             {product.discont_price && (       
-              <DiscountPercentage price={product.price} discountPrice={product.discont_price} sx={{position: 'absolute',
-              top: '10px',
-              right: '10px'}}/>
+              <DiscountPercentage price={product.price} discountPrice={product.discont_price} card />
+              //                     sx={{position: 'absolute',
+              // top: '10px',
+              // right: '10px'}}/>
             )}
             <CartButtonBox className="add-to-cart-button" >
               <MainButton 
