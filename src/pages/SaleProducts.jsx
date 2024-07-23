@@ -8,6 +8,8 @@ import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import {useState} from "react";
 import MainButton from "../components/organisms/MainButton";
 import {addToCart} from "../redux/slice/CartSlice";
+import DiscountPercentage from "../components/organisms/DiscountPercentage";
+
 
 const ProductCard = styled(Box)(() => ({
   display: "flex",
@@ -210,15 +212,7 @@ const SaleProducts = () => {
                               top: 0,
                               left: 0,}} />
                       {product.discont_price && (       
-                      <Box sx={{position: 'absolute',
-                                top: '10px',
-                                right: '10px',
-                                backgroundColor: 'blue',
-                                color: 'white',
-                                padding: '5px 10px',
-                                borderRadius: '5px'}}>
-                                -{getDiscountPercentage(product.price, product.discont_price)}%
-                      </Box> 
+                      <DiscountPercentage price={product.price} discountPrice={product.discont_price} />
                       )}
                       <CartButtonBox className="add-to-cart-button" >
                         <MainButton onClick={handleAddToCartClick(product)} buttonText='Add to Cart' sx={{width: '100%'}}/>

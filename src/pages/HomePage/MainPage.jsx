@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material"
-import mainimg from "../assets/mainimg.jpg"
-import MainButton from "./organisms/MainButton"
+import mainimg from "../../assets/mainimg.jpg"
+import MainButton from "../../components/organisms/MainButton"
+import { NavLink } from "react-router-dom"
 
 const MainPage = () => {
   return (
@@ -15,7 +16,7 @@ const MainPage = () => {
             }}>
       <Box sx={{display: 'flex', flexDirection: 'column', gap: '40px'}}>    
         <Typography variant="h1" sx={{color: 'rgba(255, 255, 255, 1)', fontWeight: 'bold', width: '70%' }}>Amazing Discounts on Pets Products</Typography>
-        <MainButton buttonText="Check Out" sx={{maxWidth: 'max-content'}}  />
+        <NavLink to="/products/sale"> <MainButton buttonText="Check Out" sx={{maxWidth: 'max-content'}} /> </NavLink>
       </Box>    
     </Box>
   ) 

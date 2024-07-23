@@ -1,7 +1,7 @@
-import {allCategories} from "../redux/slice/categoriesSlice";
+import {allCategories} from "../../redux/slice/categoriesSlice";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import TitleDivider from "./TitleDivider";
+import TitleDivider from "../../components/organisms/TitleDivider";
 import {Box, Grid, Typography, styled} from "@mui/material";
 import {NavLink} from "react-router-dom";
 

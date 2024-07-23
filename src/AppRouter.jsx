@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './pages/Layout'
 import Category from './pages/Category'
-import HomePage from './pages/HomePage'
+import HomePage from './pages/HomePage/HomePage'
 import ListCategories from './pages/ListCategories'
 import SaleProducts from './pages/SaleProducts'
 import Product from './pages/Product'

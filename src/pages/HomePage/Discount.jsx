@@ -1,8 +1,8 @@
 import { Box, Typography, TextField, Button, styled } from "@mui/material"
-import discountimage from "../assets/discountimage.svg"
+import discountimage from "../../assets/discountimage.svg"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { saleRequestSend } from "../redux/slice/saleRequestSlice"
+import { saleRequestSend } from "../../redux/slice/saleRequestSlice"
 
 const StyledTextField = styled(TextField)(() => ({
   width: '100%',

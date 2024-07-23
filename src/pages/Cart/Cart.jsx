@@ -1,7 +1,7 @@
 import CartList from "./CartList"
 import CartSummary from "./CartSummary"
 import { Box } from '@mui/system'
-import TitleDivider from "../../components/TitleDivider"
+import TitleDivider from "../../components/organisms/TitleDivider"
 import { useDispatch, useSelector } from "react-redux"
 import {Grid} from "@mui/material";
 

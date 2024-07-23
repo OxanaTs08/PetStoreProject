@@ -1,5 +1,5 @@
 import { Typography, Box, Divider, styled} from "@mui/material"
-import ButtonInTitle from "./organisms/ButtonInTitle"
+import ButtonInTitle from "./ButtonInTitle"
 import { NavLink } from "react-router-dom"
 
 const StyledNavLink = styled(NavLink)(() => ({
