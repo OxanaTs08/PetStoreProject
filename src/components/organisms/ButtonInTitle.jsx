@@ -5,7 +5,6 @@ const StyledButton = styled(Button)(() => ({
   borderColor: "rgba(139, 139, 139, 1)",
   borderRadius: "8px",
   padding: "8px 16px",
-  marginTop: '10px',
   maxWidth: 'max-content',
   textTransform: 'none',
   '&:hover': {
