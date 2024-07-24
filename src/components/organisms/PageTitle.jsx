@@ -1,6 +1,6 @@
 import { Typography, Box} from "@mui/material"
 
-const TitleDivider = ({title}) => {
+const PageTitle = ({title}) => {
   return (
     <Box sx={{display: "flex", flexDirection: "raw", padding: '20px 0', gap: '30px', alignItems: "center", width: '100%' }}>
     <Typography variant='h3' sx={{fontWeight: "bold", whiteSpace: 'nowrap',}} >
@@ -14,5 +14,5 @@ const TitleDivider = ({title}) => {
   )
 }
 
-export default TitleDivider
+export default PageTitle
 
