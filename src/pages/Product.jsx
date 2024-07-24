@@ -68,7 +68,7 @@ const Product = () => {
     ];
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: '40px' }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: '40px', paddingTop: '40px' }}>
       <BreadcrumbsComponent breadcrumbs={breadCrumbs} />
       <Box sx={{ display: "flex", flexDirection: "row", gap: '32px',
           "@media (max-width: 1100px)": {

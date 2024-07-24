@@ -15,7 +15,7 @@ const Cart = () => {
   }
 
   return (
-    <Box>
+    <Box sx={{paddingTop: '40px'}}>
       <TitleDivider title="Shopping cart" buttonTitle="Back to the store" buttonPath="/products/" />
         <Grid container spacing={2} justifyContent="center">
             <Grid item xs={12} md={8}>

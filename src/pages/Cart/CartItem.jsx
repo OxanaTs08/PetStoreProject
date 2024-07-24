@@ -33,7 +33,7 @@ const CartItem = ({item, updateCount}) => {
     updateCount()
   }
   
-  return (
+  return (  
     <Paper sx={{display: 'flex', 
               flexDirection: 'row', 
               alignItems: 'center', 

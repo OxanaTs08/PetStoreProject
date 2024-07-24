@@ -33,7 +33,7 @@ const SaleProducts = () => {
     ];
   
   return (
-    <Box sx={{display: "flex", flexDirection: "column", gap: '40px'}}>
+    <Box sx={{display: "flex", flexDirection: "column", gap: '40px', paddingTop: '40px'}}>
 
         <BreadcrumbsComponent breadcrumbs={breadCrumbs}/>
       <PageTitle title='Discounted Items'/>

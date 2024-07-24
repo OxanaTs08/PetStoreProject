@@ -36,7 +36,8 @@ const Header = () => {
         height: isSmallScreen? (open? '180px' : '128px') : '128px',
         backgroundColor: 'rgb(255, 255, 255)',
         boxShadow: 'none',
-        padding: '30px 0',  
+        padding: '30px 0',
+        borderBottom: '1px solid rgba(221, 221, 221, 1)',
       }}
     >
       <Toolbar sx={{justifyContent: 'space-between'}}>

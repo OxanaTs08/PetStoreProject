@@ -30,7 +30,7 @@ const ListCategories = () => {
   ];
 
   return (
-    <Box sx={{display: "flex", flexDirection: "column", gap: '40px'}}>
+    <Box sx={{display: "flex", flexDirection: "column", gap: '40px', paddingTop: '40px'}}>
       <BreadcrumbsComponent breadcrumbs={breadCrumbs} />
         <PageTitle title="Categories" buttonTitle="All Categories" />
           <Grid container spacing={2} justifyContent="center">
