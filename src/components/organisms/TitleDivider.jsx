@@ -13,7 +13,7 @@ const StyledNavLink = styled(NavLink)(() => ({
 const TitleDivider = ({title, buttonTitle, buttonPath}) => {
   return (
     <Box sx={{display: "flex", flexDirection: "raw", padding: '20px 0', alignItems: "center", justifyContent:'space-between' }}>
-    <Typography variant='h3' sx={{fontWeight: "bold", flexWrap: 'nowrap', display: 'flex', paddingRight: '30px'}} >
+    <Typography variant='h3' sx={{fontWeight: "bold", flexWrap: 'nowrap', display: 'flex', paddingRight: '30px', fontSize: {xs: '28px', sm: '32px'}}}>
       {title}
     </Typography>
     <Divider sx={{color: 'rgba(221, 221, 221, 1)',

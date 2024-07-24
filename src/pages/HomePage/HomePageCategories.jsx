@@ -2,8 +2,7 @@ import {allCategories} from "../../redux/slice/categoriesSlice";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import TitleDivider from "../../components/organisms/TitleDivider";
-import {Box, Grid, styled} from "@mui/material";
-import {NavLink} from "react-router-dom";
+import {Box, Grid} from "@mui/material";
 import CategoryCard from "../../components/CategoryCard";
 
 const HomePageCategories = () => {
