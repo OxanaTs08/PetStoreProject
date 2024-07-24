@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, styled, Toolbar, IconButton} from '@mui/material'
+import { AppBar, Badge, Box, styled, Toolbar, IconButton, Divider} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../assets/logo.svg'
 import emptycart from '../assets/emptycart.svg'
@@ -29,6 +29,7 @@ const Header = () => {
   }
 
   return (
+    <>
     <AppBar
       position="static"
       sx={{
@@ -37,7 +38,6 @@ const Header = () => {
         backgroundColor: 'rgb(255, 255, 255)',
         boxShadow: 'none',
         padding: '30px 0',
-        borderBottom: '1px solid rgba(221, 221, 221, 1)',
       }}
     >
       <Toolbar sx={{justifyContent: 'space-between'}}>
@@ -82,6 +82,8 @@ const Header = () => {
         </Box>
       </Toolbar>
     </AppBar>
+    <Divider  sx={{marginLeft: '-40px', marginRight: '-40px'}}/>
+    </>
   )
 }
 
