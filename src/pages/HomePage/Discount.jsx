@@ -3,6 +3,9 @@ import discountimage from "../../assets/discountimage.svg"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { saleRequestSend } from "../../redux/slice/saleRequestSlice"
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
+import DialogWindow from "../../components/organisms/DialogWindow"
 
 const StyledTextField = styled(TextField)(() => ({
   width: '100%',
@@ -11,6 +14,18 @@ const StyledTextField = styled(TextField)(() => ({
   '& label': {
     color: 'rgba(255, 255, 255, 1)',
   },
+  '& .MuiInputBase-input': {
+    color: 'rgba(255, 255, 255, 1)',
+  },
+  '& .MuiFormHelperText-root': {
+    color: 'rgba(255, 255, 255, 1)',
+  },
+  '&.Mui-error .MuiInputBase-input': {
+    borderColor: 'rgba(255, 255, 255, 1)',
+  },
+  '&.Mui-error .MuiFormHelperText-root': {
+    color: 'rgba(255, 255, 255, 1)',
+  },  
 })
 )
 const StyledButton = styled(Button)(() => ({
@@ -33,9 +48,8 @@ const BackgroundImage = styled('img')(() => ({
     width: '100%',
     height: '100%',
     display: 'flex',
-    alignSelf: 'flex-end',
-
-}))
+    alignSelf: 'flex-end'
+  }))
 
 const Discount = () => {
   const dispatch = useDispatch()
@@ -44,6 +58,20 @@ const Discount = () => {
   const [phone, setPhone] = useState("");
   const [submittedData, setSubmittedData] = useState(null);
   const [nameError, setNameError] = useState(false);
+
+  const theme = useTheme();  
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const isTabletScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const isDesktop = useMediaQuery(theme.breakpoints.down(1300));
+  const isScreenWidth = useMediaQuery(theme.breakpoints.down(1100));
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  }
 
   const handleNameChange = (e) => {
     const value = e.target.value;
@@ -65,6 +93,7 @@ const Discount = () => {
     const clientData = {name, email, phone}
     dispatch(saleRequestSend(clientData)),  
     console.log( clientData)
+    handleClickOpen()
     } else {
       alert("Please fill in all fields")
     }
@@ -76,15 +105,16 @@ const Discount = () => {
              borderRadius: '8px',
              paddingTop: '32px',
              backgroundColor: 'rgba(36, 81, 198, 1)',
-             marginTop: '80px',
              }}>
       <Box>
         <Typography variant="h3" 
                     sx={{fontWeight: 'bold', textAlign: 'center', color: 'rgba(255, 255, 255, 1)'
                     }}>5% off on the first order</Typography>
       </Box>
-      <Box sx={{display: 'flex', flexDirection: 'row', gap: '32px',}}>
-        <BackgroundImage src={discountimage} alt="discountimage"/>
+      <Box sx={{display: 'flex', flexDirection: 'row', gap: isDesktop ? '0' : '32px'}}>
+      {!(isTabletScreen || isSmallScreen || isScreenWidth)  && (
+        <BackgroundImage src={discountimage} alt="discountimage" sx={{ width: isDesktop? '70%' : '100%' }} />
+      )}  
         <Box sx={{width: '100%'}}>
           <form onSubmit={handleSubmit} style={{padding: '32px'}}>
             <Box sx={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
@@ -107,6 +137,10 @@ const Discount = () => {
                 margin="normal"
                 type="text"
                 value={phone}
+                inputProps={{
+                  pattern: "[0-9]*",
+                }}
+                helperText= {nameError? "Your phone must contain only numbers" : ''}
                 onChange={(e) => setPhone(e.target.value)}
               />
               <StyledTextField
@@ -115,6 +149,7 @@ const Discount = () => {
                 margin="normal"
                 type="email"
                 value={email}
+                helperText= {nameError? "Please enter valid email" : ''}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <StyledButton
@@ -125,6 +160,9 @@ const Discount = () => {
           </form>
         </Box>
       </Box>
+      <DialogWindow open={open} handleClose={handleClose} 
+      WindowText='Your Request has been succesfully placed on the website. 
+      Our manager will contact you shortly.' />
     </Box>
   )
 }

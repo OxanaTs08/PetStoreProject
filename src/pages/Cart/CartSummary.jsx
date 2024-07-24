@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { sendOrder } from "../../redux/slice/CartSlice" 
 import MainButton from "../../components/organisms/MainButton"
+import DialogWindow from "../../components/organisms/DialogWindow"
 
 const StyledPaper = styled(Paper)({
   padding: '20px',
@@ -120,30 +121,15 @@ const CartSummary = ({cartList}) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <MainButton buttonText="Order" onClick={handleConfirmOrder}/>
+              <MainButton buttonText="Order" onClick={handleConfirmOrder} sx={{width: '100%'}}/>
             </Box> 
           </form>
         </Stack>
       </StyledPaper>
     )}
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    > 
-    <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'rgba(13, 80, 255, 1)'}}>
-      <DialogTitle sx={{backgroundColor: 'rgba(13, 80, 255, 1)', color: 'rgba(255, 255, 255, 1)'}} id="alert-dialog-title">{"Congratulations!"}</DialogTitle>
-      <DialogActions sx={{backgroundColor: 'rgba(13, 80, 255, 1)'}}>
-          <Button sx={{color: 'rgba(255, 255, 255, 1)'}} onClick={handleClose}>x</Button>
-        </DialogActions>
-    </Box>    
-        <DialogContent sx={{backgroundColor: 'rgba(13, 80, 255, 1)'}}>
-          <DialogContentText id="alert-dialog-description" sx={{color: 'rgba(255, 255, 255, 1)'}}>
-            Your Order has been succesfully placed on the website. Our manager will contact you shortly to confirm your order.
-          </DialogContentText>
-        </DialogContent>
-    </Dialog>
+    <DialogWindow open={open} handleClose={handleClose} 
+    WindowText='Your Order has been succesfully placed on the website. 
+    Our manager will contact you shortly to confirm your order.' />
   </>
  )
 }

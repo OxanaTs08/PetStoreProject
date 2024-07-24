@@ -1,23 +1,12 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {allProducts} from "../redux/slice/productsSlice";
-import {Box, styled, Grid, Divider} from "@mui/material";
-import {NavLink} from "react-router-dom";
+import {Box, Grid} from "@mui/material";
 import PageTitle from "../components/organisms/PageTitle";
-import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import {useState} from "react";
-import FilterDefinition from "../components/FilterDefinition.jsx";
+import FilterDefinition from "../components/organisms/FilterDefinition.jsx";
 import ProductCard from "../components/ProductCard.jsx";
-import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
-
-
-const StyledNavLink = styled(NavLink)(() => ({
-    color: 'rgba(40, 40, 40, 1)',
-    textDecoration: 'none',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  }))
+import BreadcrumbsComponent from "../components/organisms/BreadcrumbsComponent.jsx";
 
 const AllProducts = () => {
     const dispatch = useDispatch();

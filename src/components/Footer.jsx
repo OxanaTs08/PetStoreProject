@@ -31,7 +31,7 @@ const Footer = () => {
         top: 'auto',
         bottom: 0,
         mt: 'auto',
-        padding: '30px 0 80px 0',
+        padding: '80px 0 80px 0',
       }}>
       <Toolbar  sx={{width: '100%'}}>
         <Box sx={{

@@ -4,9 +4,9 @@ import {allProducts, resetState} from "../redux/slice/productsSlice";
 import {Box, Grid} from "@mui/material";
 import PageTitle from "../components/organisms/PageTitle";
 import {useState} from "react";
-import FilterDefinition from "../components/FilterDefinition.jsx";
+import FilterDefinition from "../components/organisms/FilterDefinition.jsx";
 import ProductCard from "../components/ProductCard.jsx";
-import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
+import BreadcrumbsComponent from "../components/organisms/BreadcrumbsComponent.jsx";
 
 const SaleProducts = () => {
   const dispatch = useDispatch();

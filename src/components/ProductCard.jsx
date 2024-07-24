@@ -20,6 +20,7 @@ const StyledNavLink = styled(NavLink)(() => ({
   textDecoration: 'none',
   '&:hover': {
     cursor: 'pointer',
+    color: 'rgba(40, 40, 40, 0.5)',
   },
 }))
 
@@ -86,9 +87,6 @@ const ProductCard = ({product}) => {
             <Image src={`http://localhost:3333/${product.image}`}alt={product.title}/>
             {product.discont_price && (       
               <DiscountPercentage price={product.price} discountPrice={product.discont_price} card />
-              //                     sx={{position: 'absolute',
-              // top: '10px',
-              // right: '10px'}}/>
             )}
             <CartButtonBox className="add-to-cart-button" >
               <MainButton 

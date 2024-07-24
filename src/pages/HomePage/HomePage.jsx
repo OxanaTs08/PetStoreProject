@@ -6,7 +6,7 @@ import HomePageSale from "./HomePageSale"
 
 const HomePage = () => {
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column', gap: '80px'}}>
       <MainPage />
       <HomePageCategories />
       <Discount />

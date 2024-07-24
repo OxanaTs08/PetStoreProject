@@ -2,14 +2,12 @@ import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {categoryById} from "../redux/slice/categoriesSlice";
-import {Box, Grid, Divider} from "@mui/material";
-import {NavLink} from "react-router-dom";
+import {Box, Grid} from "@mui/material";
 import PageTitle from "../components/organisms/PageTitle";
-import ButtonInTitle from "../components/organisms/ButtonInTitle";
 import {useState} from "react";
 import ProductCard from "../components/ProductCard";
-import FilterDefinition from "../components/FilterDefinition.jsx";
-import BreadcrumbsComponent from "../components/BreadcrumbsComponent.jsx";
+import FilterDefinition from "../components/organisms/FilterDefinition.jsx";
+import BreadcrumbsComponent from "../components/organisms/BreadcrumbsComponent.jsx";
 import PageNotFound from "./PageNotFound.jsx";
 
 const Category = () => {

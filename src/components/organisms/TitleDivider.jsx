@@ -12,7 +12,7 @@ const StyledNavLink = styled(NavLink)(() => ({
 
 const TitleDivider = ({title, buttonTitle, buttonPath}) => {
   return (
-    <Box sx={{display: "flex", flexDirection: "raw", padding: '20px 0', alignItems: "center", marginTop: '80px', justifyContent:'space-between' }}>
+    <Box sx={{display: "flex", flexDirection: "raw", padding: '20px 0', alignItems: "center", justifyContent:'space-between' }}>
     <Typography variant='h3' sx={{fontWeight: "bold", flexWrap: 'nowrap', display: 'flex', paddingRight: '30px'}} >
       {title}
     </Typography>
