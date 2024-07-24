@@ -7,13 +7,19 @@ import PageTitle from "../components/organisms/PageTitle";
 import {useState} from "react";
 import ProductCard from "../components/ProductCard";
 import FilterDefinition from "../components/organisms/FilterDefinition.jsx";
-import BreadcrumbsComponent from "../components/organisms/BreadcrumbsComponent.jsx";
+import BreadCrumbsComponent from "../components/organisms/BreadCrumbsComponent.jsx";
+import BreadCrumbsMobile from "../components/organisms/BreadCrumbsMobile.jsx";
 import PageNotFound from "./PageNotFound.jsx";
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
+import FilterDefinitionMobile from "../components/organisms/FilterDefinitionMobile.jsx";
 
 const Category = () => {
   const { categoryId } = useParams();
   const dispatch = useDispatch();
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   useEffect(() => {
     dispatch(categoryById(categoryId));
@@ -40,12 +46,22 @@ const Category = () => {
     
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: '40px', paddingTop: '40px'}}>
-      <BreadcrumbsComponent breadcrumbs={breadCrumbs}/>
+      {isSmallScreen ? (
+        <BreadCrumbsMobile breadcrumbs={breadCrumbs} />
+      ) : (
+        <BreadCrumbsComponent breadcrumbs={breadCrumbs}/>
+      )}
+      
       <PageTitle title={categoryTitle}/>
-      <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={categoryProducts}/>
+      {isSmallScreen ? (
+         <FilterDefinitionMobile filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={categoryProducts}/>
+      ) : (
+        <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={categoryProducts}/>
+      )}
+     
       <Grid container spacing={2} justifyContent="center">
         {filteredProducts && filteredProducts.map((product) => (
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3} key={product.id}>
           <ProductCard product={product} />
         </Grid>  
         ))}

@@ -1,6 +1,8 @@
 import { AppBar, Box, Toolbar, styled, Typography, Link, Grid} from "@mui/material"
 import socialicon1 from '../assets/socialicon1.svg'
 import iconwhatsapp from '../assets/iconwhatsapp.svg'
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
 
 const StyledLink = styled(Link)(() => ({
   color: 'rgba(40, 40, 40, 1)',
@@ -21,6 +23,8 @@ const StyledItem = styled(Box)(() => ({
 }))
 
 const Footer = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <AppBar
       position="static"
@@ -41,7 +45,7 @@ const Footer = () => {
           gap: '40px',
           width: '100%',
         }}>
-          <Typography variant='h3' sx={{ color: 'rgba(40, 40, 40, 1)', fontWeight: 'bold' }} > Contacts </Typography>
+          <Typography variant={isSmallScreen? 'h5' : 'h3'} sx={{ color: 'rgba(40, 40, 40, 1)', fontWeight: 'bold' }} > Contacts </Typography>
           <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid item xs={12} sm={6} md={6}>
               <StyledItem>

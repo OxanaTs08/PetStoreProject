@@ -6,10 +6,16 @@ import PageTitle from "../components/organisms/PageTitle";
 import {useState} from "react";
 import FilterDefinition from "../components/organisms/FilterDefinition.jsx";
 import ProductCard from "../components/ProductCard.jsx";
-import BreadcrumbsComponent from "../components/organisms/BreadcrumbsComponent.jsx";
+import BreadCrumbsComponent from "../components/organisms/BreadCrumbsComponent.jsx";
+import BreadCrumbsMobile from "../components/organisms/BreadCrumbsMobile.jsx";
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
+import FilterDefinitionMobile from "../components/organisms/FilterDefinitionMobile.jsx";
 
 const SaleProducts = () => {
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   useEffect(() => {
       window.scrollTo(0, 0);
@@ -36,9 +42,18 @@ const SaleProducts = () => {
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: '40px', paddingTop: '40px'}}>
 
-        <BreadcrumbsComponent breadcrumbs={breadCrumbs}/>
+      {isSmallScreen ? (
+        <BreadCrumbsMobile breadcrumbs={breadCrumbs} />
+      ) : (
+        <BreadCrumbsComponent breadcrumbs={breadCrumbs}/>
+      )}
       <PageTitle title='Discounted Items'/>
-      <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products} onSale/>
+      {isSmallScreen ? (
+        <FilterDefinitionMobile filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products} onSale/>
+      ) : (
+        <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products} onSale/>
+      )}
+      
       <Grid container spacing={2} justifyContent="center" grid-auto-rows='1fr'>
         {filteredProducts && filteredProducts.map((product) => (
           <Grid item xs={12} sm={6} md={3} key={product.id}  >

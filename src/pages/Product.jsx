@@ -7,21 +7,33 @@ import { Box, Typography, styled } from "@mui/material";
 import MainButton from "../components/organisms/MainButton";
 import Counter from "../components/organisms/Counter";
 import DiscountPercentage from "../components/organisms/DiscountPercentage.jsx";
-import BreadcrumbsComponent from "../components/organisms/BreadcrumbsComponent.jsx";
+import BreadCrumbsComponent from "../components/organisms/BreadCrumbsComponent.jsx";
 import PageNotFound from "./PageNotFound.jsx";
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
+import BreadCrumbsMobile from "../components/organisms/BreadCrumbsMobile.jsx";
 
 const Image = styled('img')(() => ({
   borderRadius: '10px',
   objectFit: 'cover',
   width: '500px', 
-  height: '500px'
+  height: '500px',
+  "@media (max-width: 860px)": {
+    width: '200px', 
+    height: '200px',
+  }
 })
 )
 
 const Product = () => {
   const [quantity, setQuantity] = useState(1);
+  const [expanded, setExpanded] = useState(false);
   const { productId } = useParams();
   const dispatch = useDispatch();
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  
 
   useEffect(() => {
     dispatch(productById(productId));
@@ -67,19 +79,21 @@ const Product = () => {
     { title: productTitle, link: location.pathname }
     ];
 
+  const handleExpand = () => {
+      setExpanded(!expanded);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: '40px', paddingTop: '40px' }}>
-      <BreadcrumbsComponent breadcrumbs={breadCrumbs} />
-      <Box sx={{ display: "flex", flexDirection: "row", gap: '32px',
-          "@media (max-width: 1100px)": {
-          flexDirection: "column",
-          gap: "10px",
-         }
-          }}>
-      <Box sx={{ width: '49%',height: '780px', overflow: 'hidden',
-          "@media (max-width: 1100px)": {
-          height: '500px',
-          width: '100%',
+      {isSmallScreen ? (
+        <BreadCrumbsMobile breadcrumbs={breadCrumbs} />
+      ) : (
+        <BreadCrumbsComponent breadcrumbs={breadCrumbs}/>
+      )}
+      
+      <Box sx={{ display: "flex", flexDirection: isSmallScreen? "column" : "row", gap: isSmallScreen? '10px' : '32px'}}>
+      <Box sx={{ width: isSmallScreen? '100%' : '49%', height: isSmallScreen? '200px' : '780px', overflow: 'hidden', 
+          "@media (max-width: 860px)": {
           display: 'flex',
           justifyContent: 'center',
           }}}>
@@ -88,18 +102,18 @@ const Product = () => {
       <Box sx={{ width: '49%', display: "flex", flexDirection: "column", gap: '20px', "@media (max-width: 1100px)": {
           width: '100%',
           } }}>
-        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>{productTitle}</Typography>
+        <Typography variant={isSmallScreen? 'h5' : 'h4'} sx={{ fontWeight: 'bold' }}>{productTitle}</Typography>
         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '20px', position: 'relative', width: '40%'}}>
          {productDiscontPrice ? (
           <>
-            <Typography sx={{ fontSize: '70px', fontWeight: 'bold' }}>${productDiscontPrice}</Typography>
-            <Typography sx={{ color: 'rgba(139, 139, 139, 1)', textDecoration: 'line-through', fontSize: '35px' }}>${productPrice}</Typography>
+            <Typography sx={{ fontSize: isSmallScreen ? '35px' : '70px', fontWeight: 'bold' }}>${productDiscontPrice}</Typography>
+            <Typography sx={{ color: 'rgba(139, 139, 139, 1)', textDecoration: 'line-through', fontSize: isSmallScreen ? '25px' : '35px' }}>${productPrice}</Typography>
           </>
           ) : (
-            <Typography sx={{ fontSize: '70px', fontWeight: 'bold' }}>${productPrice}</Typography>
+            <Typography sx={{ fontSize: isSmallScreen ? '35px' : '70px', fontWeight: 'bold' }}>${productPrice}</Typography>
         )}
         {productDiscontPrice && (
-          <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+          <Box sx={{ position: isSmallScreen ? 'block' : 'absolute', top: 0, right: 0 }}>
           < DiscountPercentage price={productPrice} discountPrice={productDiscontPrice} />
           </Box>
         )}
@@ -114,7 +128,13 @@ const Product = () => {
               }}} />
         </Box>
         <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Description</Typography>
-        <Typography sx={{color: 'rgba(139, 139, 139, 1)'}}>{productDescription}</Typography>
+        <Typography sx={{color: 'rgba(139, 139, 139, 1)', display: expanded ? 'block' : '-webkit-box',
+            WebkitLineClamp: expanded ? 'none' : 2,
+            WebkitBoxOrient: 'vertical',
+            textOverflow: 'ellipsis',
+            overflow: expanded ? 'visible' : 'hidden',
+            cursor: 'pointer'}}
+            onClick={handleExpand}>{productDescription}</Typography>
       </Box>
     </Box>
   </Box>

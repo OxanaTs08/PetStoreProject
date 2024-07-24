@@ -1,16 +1,17 @@
-import { Typography, Box} from "@mui/material"
+import { Typography} from "@mui/material"
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
 
 const PageTitle = ({title}) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
   return (
-    <Box sx={{display: "flex", flexDirection: "raw", padding: '20px 0', gap: '30px', alignItems: "center", width: '100%' }}>
-    <Typography variant='h3' sx={{fontWeight: "bold", whiteSpace: 'nowrap',}} >
+    <>
+    <Typography variant={isSmallScreen? 'h5' : 'h3'} sx={{fontWeight: "bold", whiteSpace: 'nowrap',}} >
       {title}
     </Typography>
-    <Box sx={{display: "flex", flexDirection: "raw", alignItems: "center", width: '95%' }}>
-      
-    </Box>
-    
-    </Box>
+    </>
   )
 }
 

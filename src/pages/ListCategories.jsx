@@ -4,10 +4,15 @@ import {useDispatch, useSelector} from "react-redux";
 import PageTitle from "../components/organisms/PageTitle";
 import {Box, Grid} from "@mui/material";
 import CategoryCard from "../components/CategoryCard";
-import BreadcrumbsComponent from "../components/organisms/BreadcrumbsComponent.jsx";
+import BreadCrumbsComponent from "../components/organisms/BreadCrumbsComponent.jsx";
+import BreadCrumbsMobile from "../components/organisms/BreadCrumbsMobile.jsx";
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
 
 const ListCategories = () => {
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,7 +37,12 @@ const ListCategories = () => {
 
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: '40px', paddingTop: '40px'}}>
-      <BreadcrumbsComponent breadcrumbs={breadCrumbs} />
+       {isSmallScreen ? (
+        <BreadCrumbsMobile breadcrumbs={breadCrumbs} />
+      ) : (
+        <BreadCrumbsComponent breadcrumbs={breadCrumbs}/>
+      )}
+      
         <PageTitle title="Categories" buttonTitle="All Categories" />
           <Grid container spacing={2} justifyContent="center">
           {categories && categories.map((category) => (

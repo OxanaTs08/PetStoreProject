@@ -2,7 +2,7 @@ import {NavLink} from "react-router-dom";
 import ButtonInTitle from "./ButtonInTitle.jsx";
 import {Box, Divider, Stack} from "@mui/material";
 
-const BreadcrumbsComponent = ({breadcrumbs}) => {
+const BreadCrumbsComponent = ({breadcrumbs}) => {
     return (
         <Box sx={{display: "flex", flexDirection: "row", alignItems: "center"}}>
             {breadcrumbs.map((breadcrumb, index) => (
@@ -19,9 +19,8 @@ const BreadcrumbsComponent = ({breadcrumbs}) => {
                     )}
                 </Stack>
             ))}
-
         </Box>
     )
 }
 
-export default BreadcrumbsComponent;
+export default BreadCrumbsComponent;

@@ -24,7 +24,7 @@ const HomePageCategories = () => {
 
     return (
         <Box sx={{display: "flex", flexDirection: "column", gap: '40px'}}>
-          <TitleDivider title="Categories" buttonTitle="All Categories" buttonPath="/categories" />
+          <TitleDivider title="Categories" buttonTitle="All Categories" buttonPath="/categories" home />
             <Grid container spacing={2} justifyContent="center">
               {categories && categories.slice(0, 4).map((category) => (
               <Grid item xs={12} sm={6} md={3} key={category.id}>

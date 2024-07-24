@@ -4,6 +4,8 @@ import MainButton from './organisms/MainButton';
 import {addToCart} from "../redux/slice/CartSlice";
 import {useDispatch} from "react-redux";
 import DiscountPercentage from './organisms/DiscountPercentage';
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
 
 const Image = styled('img')(() => ({
   borderRadius: '10px',
@@ -20,7 +22,6 @@ const StyledNavLink = styled(NavLink)(() => ({
   textDecoration: 'none',
   '&:hover': {
     cursor: 'pointer',
-    color: 'rgba(40, 40, 40, 0.5)',
   },
 }))
 
@@ -55,6 +56,9 @@ const CartButtonBox = styled(Box) (() => ({
 
 const ProductCard = ({product}) => {
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
 
   const handleAddToCartClick =(product) => (event) => {
     event.preventDefault();
@@ -95,7 +99,7 @@ const ProductCard = ({product}) => {
               </CartButtonBox> 
             </Box>           
             <Box sx={{padding: '0 32px'}}>        
-              <Typography sx={{textAlign: "center",
+              <Typography  sx={{textAlign: "center",
                               whiteSpace: 'nowrap',
                               overflow: 'hidden',
                               textOverflow: 'ellipsis'

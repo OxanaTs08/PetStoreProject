@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import {useEffect, useState} from "react";
 
-const FilterDefinition = ({ setFilteredProducts, products, onSale=false }) => {
+const FilterDefinition = ({ setFilteredProducts, products, onSale=false}) => {
     const [sortOption, setSortOption] = useState('');
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
@@ -75,11 +75,8 @@ const FilterDefinition = ({ setFilteredProducts, products, onSale=false }) => {
         setShowDiscounted(event.target.checked);
     };
     return (
-        <Box sx={{display: "flex", flexDirection: "row", alignItems: "center", gap: '40px',"@media (max-width: 800px)": {
-            flexDirection: "column",
-            gap: "10px",
-            alignItems: "start"
-            }}}>
+        <Box sx={{display: "flex", flexDirection: "row", alignItems: "center", gap: '40px',
+            }}>
             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '10px' }}>
                 <Typography>Price</Typography>
                 <TextField
