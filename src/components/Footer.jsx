@@ -96,10 +96,19 @@ const Footer = () => {
             container
             rowSpacing={2}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            // sx={{ gridAutoRows: '1fr !important' }}
+            sx={{ alignItems: 'stretch' }}
           >
             {contactInfo.map((item, index) => (
-              <Grid item xs={12} sm={6} md={6} key={index} sx={{ flexGrow: 1 }}>
-                <StyledItem>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={6}
+                key={index}
+                sx={{ display: 'flex' }}
+              >
+                <StyledItem sx={{ flex: 1 }}>
                   <Typography sx={{ color: 'rgba(139, 139, 139, 1)' }}>
                     {item.title}
                   </Typography>
@@ -109,7 +118,7 @@ const Footer = () => {
                       color: 'rgba(40, 40, 40, 1)',
                       fontWeight: 'bold',
                       fontSize: '1.2rem',
-                      lineHeight: '44px',
+                      lineHeight: '1.2',
                     }}
                   >
                     {item.value}

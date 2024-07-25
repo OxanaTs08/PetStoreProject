@@ -9,15 +9,19 @@ import CartItemMobile from './CartItemMobile';
 const CartList = ({ cartList, updateCount }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTabletScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <Stack sx={{ gap: '16px' }}>
       {cartList.length === 0 ? (
         <Stack
           sx={{
-            flexDirection: isSmallScreen ? 'column' : 'row',
+            flexDirection:
+              isSmallScreen || isTabletScreen || isMediumScreen
+                ? 'column'
+                : 'row',
             gap: '30px',
-            alignItems: 'center',
           }}
         >
           <Typography>

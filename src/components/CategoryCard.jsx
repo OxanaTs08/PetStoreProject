@@ -6,7 +6,6 @@ const StyledNavLink = styled(NavLink)(() => ({
   textDecoration: 'none',
   '&:hover': {
     cursor: 'pointer',
-    color: 'rgba(40, 40, 40, 0.5)',
   },
 }));
 
@@ -18,7 +17,16 @@ const CategoryCard = ({ category }) => {
           src={`http://localhost:3333/${category.image}`}
           alt={category.title}
         />
-        <Typography sx={{ textAlign: 'center' }}>{category.title}</Typography>
+        <Typography
+          sx={{
+            textAlign: 'center',
+            '&:hover': {
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          {category.title}
+        </Typography>
       </Stack>
     </StyledNavLink>
   );

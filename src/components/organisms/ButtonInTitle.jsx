@@ -18,9 +18,9 @@ const StyledButton = styled(Button)(() => ({
   },
 }));
 
-const ButtonInTitle = ({ buttonTitle, buttonPath, sx }) => {
+const ButtonInTitle = ({ buttonTitle, sx }) => {
   return (
-    <StyledButton variant="outlined" to={buttonPath} sx={sx}>
+    <StyledButton variant="outlined" sx={sx}>
       {buttonTitle}
     </StyledButton>
   );

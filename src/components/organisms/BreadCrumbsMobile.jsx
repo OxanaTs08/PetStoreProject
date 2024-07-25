@@ -11,12 +11,14 @@ const StyledNavLink = styled(NavLink)(() => ({
 }));
 const BreadCrumbsMobile = ({ breadcrumbs }) => {
   return (
-    <Stack alignItems={'center'}>
+    <Stack alignItems={'center'} flexDirection={'row'} sx={{ gap: '10px' }}>
       {breadcrumbs.map((breadcrumb, index) => (
         <Stack
           key={breadcrumb.title}
-          flexDirection={'column'}
+          flexDirection={'row'}
           alignItems={'center'}
+          justifyContent={'center'}
+          sx={{ gap: '10px' }}
         >
           {index !== breadcrumbs.length - 1 && (
             <StyledNavLink to={breadcrumb.link}>
@@ -35,11 +37,11 @@ const BreadCrumbsMobile = ({ breadcrumbs }) => {
           )}
           {index !== breadcrumbs.length - 1 && (
             <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
               sx={{
                 color: 'rgba(221, 221, 221, 1)',
-                height: '2px',
-                width: '50px',
-                borderColor: 'gba(221, 221, 221, 1)',
               }}
             />
           )}

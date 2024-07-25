@@ -16,7 +16,7 @@ import DialogWindow from '../../components/organisms/DialogWindow';
 
 const StyledTextField = styled(TextField)(() => ({
   width: '100%',
-  border: '1px solid rgba(255, 255, 255, 1)',
+  border: '2px solid rgba(255, 255, 255, 1)',
   borderRadius: '8px',
   '& label': {
     color: 'rgba(255, 255, 255, 1)',
@@ -33,7 +33,13 @@ const StyledTextField = styled(TextField)(() => ({
   '&.Mui-error .MuiFormHelperText-root': {
     color: 'rgba(255, 255, 255, 1)',
   },
+  '&.MuiAutofill': {
+    boxShadow: 'none',
+    WebkitBoxShadow: 'none',
+    WebkitTextFillColor: 'blue',
+  },
 }));
+
 const StyledButton = styled(Button)(() => ({
   color: 'rgba(7, 8, 8)',
   backgroundColor: 'rgba(255, 255, 255, 1)',

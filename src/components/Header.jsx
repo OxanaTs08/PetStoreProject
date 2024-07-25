@@ -23,7 +23,7 @@ const StyledNavLink = styled(NavLink)(() => ({
   textDecoration: 'none',
   '&:hover': {
     cursor: 'pointer',
-    color: 'rgba(40, 40, 40, 0.5)',
+    fontWeight: 'bold',
   },
 }));
 

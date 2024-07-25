@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from '@mui/material/';
+import { Box, styled, Typography, Stack } from '@mui/material/';
 import { NavLink } from 'react-router-dom';
 import MainButton from './organisms/MainButton';
 import { addToCart, removeFromCart } from '../redux/slice/CartSlice';
@@ -96,11 +96,9 @@ const ProductCard = ({ product }) => {
   return (
     <StyledNavLink to={`/products/${product.id}`}>
       <ProductCardBox>
-        <Box
+        <Stack
           key={product.id}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
             gap: '20px',
             border: ' 1px solid rgba(221, 221, 221, 1)',
             borderRadius: '10px',
@@ -160,20 +158,28 @@ const ProductCard = ({ product }) => {
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
+                '&:hover': {
+                  fontWeight: 'bold',
+                },
               }}
             >
               {product.title}
             </Typography>
-            <Box
+            <Stack
               sx={{
-                display: 'flex',
                 flexDirection: 'row',
                 gap: '16px',
                 alignItems: 'end',
               }}
             >
               {product.discont_price ? (
-                <>
+                <Stack
+                  sx={{
+                    flexDirection: 'row',
+                    gap: '10px',
+                    alignItems: 'center',
+                  }}
+                >
                   <Typography sx={{ fontSize: '40px', fontWeight: 'bold' }}>
                     ${product.discont_price}
                   </Typography>
@@ -186,15 +192,15 @@ const ProductCard = ({ product }) => {
                   >
                     ${product.price}
                   </Typography>
-                </>
+                </Stack>
               ) : (
                 <Typography sx={{ fontSize: '40px', fontWeight: 'bold' }}>
                   ${product.price}
                 </Typography>
               )}
-            </Box>
+            </Stack>
           </Box>
-        </Box>
+        </Stack>
       </ProductCardBox>
     </StyledNavLink>
   );

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { sendOrder } from '../../redux/slice/CartSlice';
 import MainButton from '../../components/organisms/MainButton';
 import DialogWindow from '../../components/organisms/DialogWindow';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material';
 
 const StyledPaper = styled(Paper)({
   padding: '20px',
@@ -25,6 +27,10 @@ const CartSummary = ({ cartList }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTabletScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const isBigTabletScreen = useMediaQuery(theme.breakpoints.down('lg'));
 
   const totalPrice = useMemo(() => {
     return cartList
@@ -83,7 +89,14 @@ const CartSummary = ({ cartList }) => {
       {cartList.length > 0 && (
         <StyledPaper>
           <Stack spacing={2}>
-            <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
+            <Typography
+              variant={
+                isSmallScreen || isTabletScreen || isBigTabletScreen
+                  ? 'h4'
+                  : 'h3'
+              }
+              sx={{ fontWeight: 'bold' }}
+            >
               Order Details
             </Typography>
             <Typography variant="h5" sx={{ color: 'rgba(139, 139, 139, 1)' }}>
@@ -99,7 +112,14 @@ const CartSummary = ({ cartList }) => {
               <Typography variant="h5" sx={{ color: 'rgba(139, 139, 139, 1)' }}>
                 Total{' '}
               </Typography>
-              <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
+              <Typography
+                variant={
+                  isSmallScreen || isTabletScreen || isBigTabletScreen
+                    ? 'h4'
+                    : 'h3'
+                }
+                sx={{ fontWeight: 'bold' }}
+              >
                 $ {totalPrice}{' '}
               </Typography>
             </Stack>

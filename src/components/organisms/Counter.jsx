@@ -35,6 +35,10 @@ const Counter = ({ item, setQuantity, quantity, cart }) => {
       cart
         ? dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
         : setQuantity(quantity - 1);
+    } else {
+      if (quantity > 1) {
+        setQuantity(quantity - 1);
+      }
     }
   };
 
