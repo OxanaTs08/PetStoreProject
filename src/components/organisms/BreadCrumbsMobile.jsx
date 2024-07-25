@@ -14,8 +14,12 @@ const BreadCrumbsMobile = ({breadcrumbs}) => {
         <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             {breadcrumbs.map((breadcrumb, index) => (
                 <Stack key={breadcrumb.title} flexDirection={"column"} alignItems={"center"}>
+                    {index !== breadcrumbs.length - 1 && (
                     <StyledNavLink to={breadcrumb.link}>
-                        <Typography  sx={{color: index === breadcrumbs.length - 1 ? 'rgb(0,0,0)' : 'rgba(139, 139, 139, 1)'}}>{breadcrumb.title}</Typography></StyledNavLink>
+                        <Typography sx={{color: index === breadcrumbs.length - 1 ? 'rgb(0,0,0)' : 'rgba(139, 139, 139, 1)',
+                            textAlign: "center"}}>{breadcrumb.title}
+                        </Typography></StyledNavLink>
+                    )}    
                     {index !== breadcrumbs.length - 1 && (
                         <Divider sx={{
                             color: 'rgba(221, 221, 221, 1)',

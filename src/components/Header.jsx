@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, styled, Toolbar, IconButton, Divider} from '@mui/material'
+import { AppBar, Badge, Box, styled, Toolbar, IconButton, Divider, Drawer} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../assets/logo.svg'
 import emptycart from '../assets/emptycart.svg'
@@ -23,7 +23,6 @@ const Header = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   
-
   const handleMenu = () => {
     setOpen(!open)
   }
@@ -34,7 +33,7 @@ const Header = () => {
       position="static"
       sx={{
         width: '100%',
-        height: isSmallScreen? (open? '180px' : '128px') : '128px',
+        height: '128px',
         backgroundColor: 'rgb(255, 255, 255)',
         boxShadow: 'none',
         padding: '30px 0',
@@ -46,45 +45,61 @@ const Header = () => {
             <StyledNavLink  to="/"><img src={logo} alt="logo" /></StyledNavLink>
           </Box> 
           {isSmallScreen ? (
-          <Box>
             <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={handleMenu}
-              style={{color: 'rgba(40, 40, 40, 1)'}}>
-              <MenuIcon />
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+                onClick={handleMenu}
+                style={{color: 'rgba(40, 40, 40, 1)'}}>
+                <MenuIcon />
             </IconButton>
-          {open && (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isSmallScreen ? '5px' : '20px' }}>
+          ) : (
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isSmallScreen ? '5px' : '20px' }}>
                   <StyledNavLink  to="/">Main Page</StyledNavLink>
                   <StyledNavLink  to="/categories">Categories</StyledNavLink>
                   <StyledNavLink  to="/products/">All Products</StyledNavLink>
                   <StyledNavLink  to="/products/sale">All Sales</StyledNavLink>
                 </Box>
-              )}
+            )}
             </Box>
-          ) : (
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
-              <StyledNavLink to="/">Main Page</StyledNavLink>
-              <StyledNavLink to="/categories">Categories</StyledNavLink>
-              <StyledNavLink to="/products/">All Products</StyledNavLink>
-              <StyledNavLink to="/products/sale">All Sales</StyledNavLink>
-            </Box>
-          )}
           <Box>
-            <Badge 
-            badgeContent={cartCount} color="primary"
-            > <StyledNavLink  to="/cart"><img src={emptycart} alt="cart" /></StyledNavLink > </Badge>
-          </Box>
+            <Badge badgeContent={cartCount} color="primary">
+              <StyledNavLink  to="/cart"><img src={emptycart} alt="cart" /></StyledNavLink > 
+            </Badge>
         </Box>
       </Toolbar>
     </AppBar>
+    <Drawer
+        variant="temporary"
+        open={open}
+        onClose={handleMenu}
+        ModalProps={{
+          keepMounted: true, 
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: 200,
+            paddingTop: '40px',
+          },
+        }}
+      >
+        <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+          <StyledNavLink to="/">Main Page</StyledNavLink>
+          <StyledNavLink to="/categories">Categories</StyledNavLink>
+          <StyledNavLink to="/products/">All Products</StyledNavLink>
+          <StyledNavLink to="/products/sale">All Sales</StyledNavLink>
+        </Box>
+      </Drawer>
     <Divider  sx={{marginLeft: '-40px', marginRight: '-40px'}}/>
     </>
   )
 }
 
 export default Header
+
+
+

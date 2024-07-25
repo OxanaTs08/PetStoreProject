@@ -5,6 +5,7 @@ import {Box, Grid} from "@mui/material";
 import PageTitle from "../components/organisms/PageTitle";
 import {useState} from "react";
 import FilterDefinition from "../components/organisms/FilterDefinition.jsx";
+import FilterDefinitionMobile from "../components/organisms/FilterDefinitionMobile.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import BreadCrumbsComponent from "../components/organisms/BreadCrumbsComponent.jsx";
 import { useMediaQuery } from '@mui/material'
@@ -45,7 +46,11 @@ const AllProducts = () => {
           <BreadCrumbsComponent breadcrumbs={breadCrumbs}/>
           )}
           <PageTitle title='All Products'/>
-            <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products}/>
+          {isSmallScreen ? (
+             <FilterDefinitionMobile filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products} />
+          ) : (
+              <FilterDefinition filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts} products={products}/>
+          )}
             <Grid container spacing={2} justifyContent="center" grid-auto-rows="1fr">
               {filteredProducts && filteredProducts.map((product) => (
               <Grid item xs={12} sm={6} md={3} key={product.id}>

@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productById } from "../redux/slice/productsSlice";
 import {addSpecificAmountToCart} from "../redux/slice/CartSlice";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography, styled, Stack } from "@mui/material";
 import MainButton from "../components/organisms/MainButton";
 import Counter from "../components/organisms/Counter";
 import DiscountPercentage from "../components/organisms/DiscountPercentage.jsx";
@@ -95,17 +95,20 @@ const Product = () => {
       <Box sx={{ width: isSmallScreen? '100%' : '49%', height: isSmallScreen? '200px' : '780px', overflow: 'hidden', 
           "@media (max-width: 860px)": {
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'center'
           }}}>
         <Image src={`http://localhost:3333/${productData?.[0]?.image}`} alt={productTitle}/>
       </Box>
-      <Box sx={{ width: '49%', display: "flex", flexDirection: "column", gap: '20px', "@media (max-width: 1100px)": {
-          width: '100%',
-          } }}>
-        <Typography variant={isSmallScreen? 'h5' : 'h4'} sx={{ fontWeight: 'bold' }}>{productTitle}</Typography>
-        <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '20px', position: 'relative', width: '40%'}}>
+      <Stack sx={{ width: isSmallScreen? '100%' : '49%', gap: '20px'}}>
+        <Typography variant={isSmallScreen? 'h5' : 'h4'} sx={{ fontWeight: 'bold', textAlign: 'center' }}>{productTitle}</Typography>
+        <Stack direction="row" 
+            alignItems="center" 
+            sx={{justifyContent: isSmallScreen ? 'center' : 'flex-start', 
+            gap: isSmallScreen? '10px' : '20px', 
+            position: 'relative'
+            }}>
          {productDiscontPrice ? (
-          <>
+          < >
             <Typography sx={{ fontSize: isSmallScreen ? '35px' : '70px', fontWeight: 'bold' }}>${productDiscontPrice}</Typography>
             <Typography sx={{ color: 'rgba(139, 139, 139, 1)', textDecoration: 'line-through', fontSize: isSmallScreen ? '25px' : '35px' }}>${productPrice}</Typography>
           </>
@@ -117,7 +120,7 @@ const Product = () => {
           < DiscountPercentage price={productPrice} discountPrice={productDiscontPrice} />
           </Box>
         )}
-        </Box>
+        </Stack>
         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: '10px', justifyContent: 'space-between',
              "@media (max-width: 1150px)": {
              flexDirection: "column",
@@ -135,7 +138,7 @@ const Product = () => {
             overflow: expanded ? 'visible' : 'hidden',
             cursor: 'pointer'}}
             onClick={handleExpand}>{productDescription}</Typography>
-      </Box>
+      </Stack>
     </Box>
   </Box>
   );
