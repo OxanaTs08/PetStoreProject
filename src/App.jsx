@@ -1,16 +1,11 @@
-import AppRouter from './AppRouter'
-import { ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@mui/material/styles';
+import AppRouter from './AppRouter';
 
 function App() {
-
   return (
-    <ThemeProvider theme={createTheme({})}>
     <>
       <AppRouter />
     </>
-    </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

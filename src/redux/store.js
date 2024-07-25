@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import categoriesSlice from "./slice/categoriesSlice";
-import productsSlice from "./slice/productsSlice";
-import cartSlice from "./slice/CartSlice";
-import requestReducer from "./slice/saleRequestSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import categoriesSlice from './slice/categoriesSlice';
+import productsSlice from './slice/productsSlice';
+import cartSlice from './slice/CartSlice';
+import requestReducer from './slice/saleRequestSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,7 +10,7 @@ const store = configureStore({
     products: productsSlice,
     cart: cartSlice,
     request: requestReducer,
-   }
+  },
 });
 
-export default store
+export default store;
