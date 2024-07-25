@@ -17,12 +17,12 @@ const StyledNavLink = styled(NavLink)(() => ({
 }))
 
 const Image = styled('img')(() => ({
-    width: '200px',
-    height: '200px',
+    width: '100px',
+    height: '100px',
     objectFit: 'cover',
 }));
 
-const CartItem = ({item, updateCount}) => {
+const CartItemMobile = ({item, updateCount}) => {
   const [quantity, setQuantity] = useState(1)
   const dispatch = useDispatch()
   const theme = useTheme();
@@ -37,47 +37,50 @@ const CartItem = ({item, updateCount}) => {
     <Stack sx={{
         flexDirection: 'row',
         alignItems: 'center',
-        gap: '30px',
-        padding: '10px',
+        gap: '10px',
+        padding: '5px',
         height: '180px',
         overflow: 'hidden',
         borderRadius: '10px',
         border: '1px solid #e0e0e0',
         justifyContent: 'space-between',
+        position: 'relative'
     }}>
+      <Button variant="text" 
+          onClick={() => deleteItem(item.id)} 
+          sx={{
+          position: 'absolute',
+          top: '10px',
+          right: '-10px',
+          width: '10px ',
+          height: '10px ',
+          padding: 0,
+          '&:hover': {color: 'rgba(255, 0, 0)'}}}>x</Button>
       <Image src={`http://localhost:3333/${item.image}`} alt={item.title}/>
-      <Stack sx={{flexDirection: 'column', gap: isSmallScreen? '10px' : '30px', alignItems: 'flex-start', flex: 1}}>
-        <Stack sx={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+      <Stack sx={{ gap:'10px', alignItems: 'flex-start', flex: 1}}>
           <StyledNavLink to={`/products/${item.id}`}>
-            <Typography variant={isSmallScreen? 'subtitle1' : 'h5'}
-                sx={{ lineHeight: '1.2', fontWeight: '300'}}>
+            <Typography
+                sx={{ lineHeight: '1.2', 
+                fontWeight: '300',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'}}>
                 {item.title}</Typography>
           </StyledNavLink>
-          <Button variant="text" 
-                  onClick={() => deleteItem(item.id)} 
-                  sx={{
-                    width: '10px !important',
-                    height: '10px !important',
-                    padding: 0,
-                    marginRight: '0 !important',
-                    marginLeft: 'auto',
-                    '&:hover': {color: 'rgba(255, 0, 0)'}}}>x</Button>
-        </Stack>
         <Stack sx={{flexDirection: isSmallScreen? 'column' : 'row', gap: isSmallScreen? '5px' : '30px', alignItems: 'center'}}>
           <Counter item={item} cart/>
           {item.discont_price ? (
           <Stack sx={{flexDirection: 'row', gap: '5px', alignItems: 'center'}}>
-          <Typography variant='h4' sx={{ fontWeight: 'bold' }}>${item.discont_price}</Typography>
-          <Typography sx={{ color: 'rgba(139, 139, 139, 1)', textDecoration: 'line-through', fontSize: '20px' }}>${item.price}</Typography>
+          <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>${item.discont_price}</Typography>
+          <Typography sx={{ color: 'rgba(139, 139, 139, 1)', textDecoration: 'line-through', fontSize: '15spx' }}>${item.price}</Typography>
           
           </Stack>
           ) : (
-          <Typography variant='h4' sx={{ fontWeight: 'bold' }}>${item.price}</Typography>
+          <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>${item.price}</Typography>
           )}
         </Stack>
       </Stack>
     </Stack>
   )
 }
-export default CartItem
+export default CartItemMobile
 

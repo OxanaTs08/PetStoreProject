@@ -1,24 +1,25 @@
 import { useDispatch } from "react-redux"
 import { updateQuantity } from "../../redux/slice/CartSlice"
 import {Button, Typography,styled, Box} from "@mui/material";
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material';
 
-const StyledButton = styled (Button)(() => ({
-  width: '58px',
-  height: '58px',
+const StyledButton = styled(Button)(() => ({
   border: '1px solid rgba(221, 221, 221, 1)',
-  color:'rgba(221, 221, 221, 1)',
+  color: 'rgba(221, 221, 221, 1)',
+  padding: '5px',
   '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 1)',
-    color: 'rgba(40, 40, 40, 1)',
-    boxShadow: 'none',
-    borderColor: "rgba(139, 139, 139, 1)", 
-  },
-  "@media (max-width: 860px)": {
-    width: '30px',
-    height: '30px'}
+  backgroundColor: 'rgba(255, 255, 255, 1)',
+  color: 'rgba(40, 40, 40, 1)',
+  boxShadow: 'none',
+  borderColor: "rgba(139, 139, 139, 1)",
+  }
 }));
 
 const Counter = ({item, setQuantity, quantity, cart}) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
   if (!item) {
     return null
   }
@@ -34,22 +35,25 @@ const Counter = ({item, setQuantity, quantity, cart}) => {
 
   return (
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-        <StyledButton variant="outlined" onClick={increment}>+</StyledButton>
-        <Box sx={{width: '58px', 
-                  height: '58px', 
-                  borderTop: '1px solid rgba(221, 221, 221, 1)', 
-                  borderBottom: '1px solid rgba(221, 221, 221, 1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  "@media (max-width: 860px)": {
-                    width: '30px',
-                    height: '30px'}
-                  }}>
-          <Typography> {quantity ? quantity : item.quantity}  </Typography>
-        </Box>
-        <StyledButton variant="outlined" onClick={decrement}>-</StyledButton>
+        <StyledButton variant="outlined" onClick={increment} sx={{
+            width: isSmallScreen ? '30px' : '58px',
+            height: isSmallScreen ? '30px' : '58px',
+        }}>+</StyledButton>
+        <Box sx={{width: isSmallScreen? '30px' : '58px', 
+            height: isSmallScreen? '30px' : '58px', 
+            borderTop: '1px solid rgba(221, 221, 221, 1)', 
+            borderBottom: '1px solid rgba(221, 221, 221, 1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}>
+        <Typography> {quantity ? quantity : item.quantity}  </Typography>
       </Box>
+      <StyledButton variant="outlined" onClick={decrement} sx={{
+          width: isSmallScreen ? '30px' : '58px',
+          height: isSmallScreen ? '30px' : '58px',
+      }}>-</StyledButton>
+    </Box>
   )
 }
 

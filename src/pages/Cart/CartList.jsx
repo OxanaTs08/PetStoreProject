@@ -4,10 +4,12 @@ import MainButton from "../../components/organisms/MainButton"
 import { NavLink } from "react-router-dom"
 import { useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material';
+import CartItemMobile from "./CartItemMobile"
 
 const CartList = ({cartList, updateCount}) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
       {cartList.length === 0 ? (
@@ -17,10 +19,13 @@ const CartList = ({cartList, updateCount}) => {
       </Box>
         ) : (
       cartList.map((item) => (
-        <CartItem key={item.id} 
-                  item={item}
-                  updateCount={updateCount}
-                   />
+        <>
+        {isSmallScreen ? (
+          <CartItemMobile key={item.id} item={item} updateCount={updateCount}/>
+          ) : (
+          <CartItem key={item.id} item={item} updateCount={updateCount}/>
+          )}
+       </> 
       )))}
     </Box>
   )

@@ -1,11 +1,12 @@
 import {Box, styled, Typography} from '@mui/material/';
 import {NavLink} from "react-router-dom";
 import MainButton from './organisms/MainButton';
-import {addToCart} from "../redux/slice/CartSlice";
+import {addToCart, removeFromCart} from "../redux/slice/CartSlice";
 import {useDispatch} from "react-redux";
 import DiscountPercentage from './organisms/DiscountPercentage';
 import { useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material';
+import { useState } from 'react';
 
 const Image = styled('img')(() => ({
   borderRadius: '10px',
@@ -54,10 +55,21 @@ const CartButtonBox = styled(Box) (() => ({
   zIndex: 1,
 }))
 
+const CartMobileButtonBox = styled(Box) (() => ({
+  position: 'absolute',
+  bottom: '16px',
+  padding: '0 16px',
+  width: '100%',
+  display: "flex",
+  justifyContent: "center",
+  zIndex: 1,
+}))
+
 const ProductCard = ({product}) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const [inCart, setInCart] = useState(false);
 
 
   const handleAddToCartClick =(product) => (event) => {
@@ -71,7 +83,14 @@ const ProductCard = ({product}) => {
       quantity: 1,
     }
     dispatch(addToCart(item))
+    setInCart(true);
   };
+
+  const handleDeleteItem =(product) => (event) =>{
+    event.preventDefault();
+    dispatch(removeFromCart(product.id))
+    setInCart(false);
+  }
   
   return (
     <StyledNavLink to={`/products/${product.id}`}>
@@ -92,11 +111,21 @@ const ProductCard = ({product}) => {
             {product.discont_price && (       
               <DiscountPercentage price={product.price} discountPrice={product.discont_price} card />
             )}
-            <CartButtonBox className="add-to-cart-button" >
-              <MainButton 
-                onClick={handleAddToCartClick(product)}
-                buttonText='Add to Cart' sx={{width: '100%'}} />
-              </CartButtonBox> 
+           {isSmallScreen? (
+              <CartMobileButtonBox>
+                <MainButton onClick={inCart? handleDeleteItem(product) : handleAddToCartClick(product)}
+                    buttonText={inCart? 'Remove from Cart' : 'Add to Cart'}
+                    sx={{width: '100%'}} 
+                />
+              </CartMobileButtonBox>
+            ) : (
+              <CartButtonBox className="add-to-cart-button">
+                <MainButton onClick={inCart? handleDeleteItem(product) : handleAddToCartClick(product)}
+                    buttonText={inCart? 'Remove from Cart' : 'Add to Cart'}
+                    sx={{width: '100%'}} 
+                />
+              </CartButtonBox>
+            )}
             </Box>           
             <Box sx={{padding: '0 32px'}}>        
               <Typography  sx={{textAlign: "center",

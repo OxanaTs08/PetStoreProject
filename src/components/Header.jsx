@@ -56,18 +56,18 @@ const Header = () => {
                 <MenuIcon />
             </IconButton>
           ) : (
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isSmallScreen ? '5px' : '20px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
                   <StyledNavLink  to="/">Main Page</StyledNavLink>
                   <StyledNavLink  to="/categories">Categories</StyledNavLink>
                   <StyledNavLink  to="/products/">All Products</StyledNavLink>
                   <StyledNavLink  to="/products/sale">All Sales</StyledNavLink>
-                </Box>
-            )}
             </Box>
+            )}
           <Box>
             <Badge badgeContent={cartCount} color="primary">
               <StyledNavLink  to="/cart"><img src={emptycart} alt="cart" /></StyledNavLink > 
             </Badge>
+        </Box>
         </Box>
       </Toolbar>
     </AppBar>
