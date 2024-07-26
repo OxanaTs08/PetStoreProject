@@ -62,6 +62,9 @@ const CartSummary = ({ cartList }) => {
     } else {
       setNameError(false);
     }
+    if (nameError && nameValue.length > 0 && /^[A-Za-z ]+$/.test(value)) {
+      setNameError(false);
+    }
   };
   const handlePhoneChange = (event) => {
     const phoneValue = event.target.value;
@@ -69,6 +72,9 @@ const CartSummary = ({ cartList }) => {
     if (!/^\d+$/.test(phoneValue)) {
       setPhoneError(true);
     } else {
+      setPhoneError(false);
+    }
+    if (phoneError && phoneValue.length > 0 && /^\d+$/.test(phoneValue)) {
       setPhoneError(false);
     }
   };
