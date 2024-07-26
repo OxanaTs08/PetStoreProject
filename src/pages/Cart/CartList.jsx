@@ -32,19 +32,17 @@ const CartList = ({ cartList, updateCount }) => {
           </NavLink>
         </Stack>
       ) : (
-        cartList.map((item) => (
-          <>
-            {isSmallScreen ? (
-              <CartItemMobile
-                key={item.id}
-                item={item}
-                updateCount={updateCount}
-              />
-            ) : (
-              <CartItem key={item.id} item={item} updateCount={updateCount} />
-            )}
-          </>
-        ))
+        cartList.map((item) =>
+          isSmallScreen ? (
+            <CartItemMobile
+              key={item.id}
+              item={item}
+              updateCount={updateCount}
+            />
+          ) : (
+            <CartItem key={item.id} item={item} updateCount={updateCount} />
+          ),
+        )
       )}
     </Stack>
   );
