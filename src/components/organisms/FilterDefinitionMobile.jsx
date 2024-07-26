@@ -37,6 +37,9 @@ const FilterDefinition = ({
 
     const sortedAndFilteredProducts = () => {
       let filteredProducts = applyPriceFilter(products);
+      if (sortOption === 'default') {
+        return filteredProducts;
+      }
       if (sortOption === 'newest') {
         return filteredProducts
           .slice()
@@ -117,6 +120,7 @@ const FilterDefinition = ({
         <FormControl size="small" sx={{ m: 1, minWidth: 200 }}>
           <InputLabel id="demo-simple-select-label">Sorted</InputLabel>
           <Select value={sortOption} onChange={handleSortChange}>
+            <MenuItem value="default">By Default</MenuItem>
             <MenuItem value="newest">Newest</MenuItem>
             <MenuItem value="price-high-low">Price : high-low</MenuItem>
             <MenuItem value="price-low-high">Price : low-high</MenuItem>
