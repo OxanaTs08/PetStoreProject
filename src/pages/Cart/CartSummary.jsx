@@ -6,6 +6,7 @@ import MainButton from '../../components/organisms/MainButton';
 import DialogWindow from '../../components/organisms/DialogWindow';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material';
+import { removeFromCart } from '../../redux/slice/CartSlice';
 
 const StyledPaper = styled(Paper)({
   padding: '20px',
@@ -99,6 +100,9 @@ const CartSummary = ({ cartList }) => {
       const clientData = { name, email, phone };
       dispatch(sendOrder(cartItems, clientData)), console.log(clientData);
       console.log(cartItems);
+      cartItems.forEach((item) => {
+        dispatch(removeFromCart(item.id));
+      });
       handleClickOpen();
     } else {
       setFormError(true);
