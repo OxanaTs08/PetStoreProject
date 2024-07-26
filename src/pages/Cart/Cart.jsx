@@ -4,10 +4,14 @@ import { Box } from '@mui/system';
 import TitleDivider from '../../components/organisms/TitleDivider';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material';
 
 const Cart = () => {
   const cartList = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleUpdateCount = (itemId, quantity) => {
     dispatch(addToCart({ id: itemId, quantity }));
@@ -16,7 +20,7 @@ const Cart = () => {
   return (
     <Box sx={{ paddingTop: '40px' }}>
       <TitleDivider
-        title="Shopping cart"
+        title={isSmallScreen ? 'Cart' : 'Shopping cart'}
         buttonTitle="Back to the store"
         buttonPath="/products/"
       />

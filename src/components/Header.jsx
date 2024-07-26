@@ -30,6 +30,7 @@ const StyledNavLink = styled(NavLink)(() => ({
 const Header = () => {
   const cartCount = useSelector((state) => state.cart.cartCount);
   const [open, setOpen] = useState(false);
+
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 

@@ -207,7 +207,6 @@ const Product = () => {
               item={productData[0]}
               quantity={quantity}
               setQuantity={setQuantity}
-              sx={{ width: '45%' }}
             />
             <MainButton
               onClick={(event) => handleAddToCartClick(event)}

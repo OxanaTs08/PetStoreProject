@@ -1,4 +1,4 @@
-import { Button, Typography, styled, Stack } from '@mui/material';
+import { Button, Typography, styled, Stack, IconButton } from '@mui/material';
 import { removeFromCart } from '../../redux/slice/CartSlice';
 import Counter from '../../components/organisms/Counter';
 import { useDispatch } from 'react-redux';
@@ -6,13 +6,13 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material';
+import closebutton from '../../assets/closebutton.svg';
 
 const StyledNavLink = styled(NavLink)(() => ({
   color: 'rgba(40, 40, 40, 1)',
   textDecoration: 'none',
   '&:hover': {
     cursor: 'pointer',
-    color: 'rgba(40, 40, 40, 0.5)',
   },
 }));
 
@@ -66,25 +66,30 @@ const CartItem = ({ item, updateCount }) => {
           <StyledNavLink to={`/products/${item.id}`}>
             <Typography
               variant={isSmallScreen ? 'subtitle1' : 'h5'}
-              sx={{ lineHeight: '1.2', fontWeight: '300' }}
+              sx={{
+                lineHeight: '1.2',
+                fontWeight: '300',
+                '&:hover': {
+                  fontWeight: 'bold',
+                },
+              }}
             >
               {item.title}
             </Typography>
           </StyledNavLink>
-          <Button
-            variant="text"
+          <IconButton
+            variant="outline-secondary"
+            size="sm"
             onClick={() => deleteItem(item.id)}
             sx={{
-              width: '10px !important',
-              height: '10px !important',
               padding: 0,
               marginRight: '0 !important',
               marginLeft: 'auto',
-              '&:hover': { color: 'rgba(255, 0, 0)' },
+              '&:hover': { color: 'blue' },
             }}
           >
-            x
-          </Button>
+            <img src={closebutton} alt="closebutton" />
+          </IconButton>
         </Stack>
         <Stack
           sx={{

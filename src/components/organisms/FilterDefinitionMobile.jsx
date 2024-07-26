@@ -97,23 +97,25 @@ const FilterDefinition = ({
         }}
       >
         <TextField
+          variant="outlined"
+          size="small"
           label="Price From"
-          variant="standard"
           type="number"
           value={minPrice}
           onChange={handleMinPriceChange}
         />
         <TextField
           label="Price To"
-          variant="standard"
+          variant="outlined"
+          size="small"
           type="number"
           value={maxPrice}
           onChange={handleMaxPriceChange}
         />
       </Stack>
       <Box>
-        <FormControl variant="standard" sx={{ width: '200px' }}>
-          <InputLabel id="demo-simple-select-standard-label">Sorted</InputLabel>
+        <FormControl size="small" sx={{ m: 1, minWidth: 200 }}>
+          <InputLabel id="demo-simple-select-label">Sorted</InputLabel>
           <Select value={sortOption} onChange={handleSortChange}>
             <MenuItem value="newest">Newest</MenuItem>
             <MenuItem value="price-high-low">Price : high-low</MenuItem>

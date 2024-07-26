@@ -1,10 +1,10 @@
 import { Typography, Stack } from '@mui/material';
 import CartItem from './CartItem';
+import CartItemMobile from './CartItemMobile';
 import MainButton from '../../components/organisms/MainButton';
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material';
-import CartItemMobile from './CartItemMobile';
 
 const CartList = ({ cartList, updateCount }) => {
   const theme = useTheme();

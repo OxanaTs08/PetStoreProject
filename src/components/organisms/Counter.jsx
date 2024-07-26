@@ -7,7 +7,6 @@ import { useTheme } from '@mui/material';
 const StyledButton = styled(Button)(() => ({
   border: '1px solid rgba(221, 221, 221, 1)',
   color: 'rgba(221, 221, 221, 1)',
-  padding: '5px',
   '&:hover': {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     color: 'rgba(40, 40, 40, 1)',

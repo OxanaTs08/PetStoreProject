@@ -1,6 +1,8 @@
 import { Typography, Divider, styled, Stack } from '@mui/material';
 import ButtonInTitle from './ButtonInTitle';
 import { NavLink } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material';
 
 const StyledNavLink = styled(NavLink)(() => ({
   color: 'rgba(40, 40, 40, 1)',
@@ -11,6 +13,8 @@ const StyledNavLink = styled(NavLink)(() => ({
 }));
 
 const TitleDivider = ({ title, buttonTitle, buttonPath }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Stack
       sx={{
@@ -21,13 +25,12 @@ const TitleDivider = ({ title, buttonTitle, buttonPath }) => {
       }}
     >
       <Typography
-        variant="h3"
+        variant={isSmallScreen ? 'h5' : 'h3'}
         sx={{
           fontWeight: 'bold',
           flexWrap: 'nowrap',
           display: 'flex',
           paddingRight: '30px',
-          fontSize: { xs: '28px', sm: '32px' },
         }}
       >
         {title}
