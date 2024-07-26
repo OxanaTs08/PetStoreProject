@@ -67,7 +67,12 @@ const AllProducts = () => {
           products={products}
         />
       )}
-      <Grid container spacing={2} justifyContent="center" grid-auto-rows="1fr">
+      <Grid
+        container
+        spacing={2}
+        justifyContent="flex-start"
+        grid-auto-rows="1fr"
+      >
         {filteredProducts &&
           filteredProducts.map((product) => (
             <Grid item xs={12} sm={6} md={3} key={product.id}>
