@@ -19,7 +19,7 @@ const StyledPaper = styled(Paper)({
 const StyledTextField = styled(TextField)(() => ({
   border: 'none',
   borderRadius: '8px',
-  input: { color: 'rgba(255, 255, 255, 1)' },
+  input: { color: 'rgba(0, 0, 0, 1)' },
   backgroundColor: 'rgba(255, 255, 255, 1)',
 }));
 
@@ -50,6 +50,8 @@ const CartSummary = ({ cartList }) => {
   const [phone, setPhone] = useState('');
   const [submittedData, setSubmittedData] = useState(null);
   const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [formError, setFormError] = useState(false);
 
   const handleNameChange = (e) => {
@@ -59,6 +61,25 @@ const CartSummary = ({ cartList }) => {
       setNameError(true);
     } else {
       setNameError(false);
+    }
+  };
+  const handlePhoneChange = (event) => {
+    const phoneValue = event.target.value;
+    setPhone(phoneValue);
+    if (!/^\d+$/.test(phoneValue)) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
+
+  const handleEmailBlur = (event) => {
+    const emailValue = event.target.value;
+    setEmail(emailValue);
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(emailValue)) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
     }
   };
 
@@ -155,10 +176,11 @@ const CartSummary = ({ cartList }) => {
                   inputProps={{
                     pattern: '[0-9]*',
                   }}
+                  error={phoneError}
                   helperText={
-                    nameError ? 'Your phone must contain only numbers' : ''
+                    phoneError ? 'Your phone must contain only numbers' : ''
                   }
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={handlePhoneChange}
                 />
                 <StyledTextField
                   label="Enter Your Email"
@@ -166,8 +188,10 @@ const CartSummary = ({ cartList }) => {
                   margin="normal"
                   type="email"
                   value={email}
-                  helperText={nameError ? 'Please enter valid email' : ''}
-                  onChange={(e) => setEmail(e.target.value)}
+                  error={emailError}
+                  helperText={emailError ? 'Please enter valid email' : ''}
+                  onChange={(event) => setEmail(event.target.value)}
+                  onBlur={handleEmailBlur}
                 />
                 <MainButton
                   buttonText="Order"
