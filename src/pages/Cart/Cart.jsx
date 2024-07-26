@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material';
+import BackToTopButton from '../../components/organisms/BackToTopBottom';
 
 const Cart = () => {
   const cartList = useSelector((state) => state.cart.cart);
@@ -32,6 +33,7 @@ const Cart = () => {
           <CartSummary cartList={cartList} />
         </Grid>
       </Grid>
+      <BackToTopButton />
     </Box>
   );
 };

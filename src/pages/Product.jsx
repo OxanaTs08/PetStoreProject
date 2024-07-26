@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { productById } from '../redux/slice/productsSlice';
 import { addSpecificAmountToCart } from '../redux/slice/CartSlice';
-import { Box, Typography, styled, Stack } from '@mui/material';
+import { Box, Typography, styled, Stack, Button } from '@mui/material';
 import MainButton from '../components/organisms/MainButton';
 import Counter from '../components/organisms/Counter';
 import DiscountPercentage from '../components/organisms/DiscountPercentage.jsx';
@@ -225,16 +225,25 @@ const Product = () => {
           <Typography
             sx={{
               color: 'rgba(139, 139, 139, 1)',
-              display: expanded ? 'block' : '-webkit-box',
-              WebkitLineClamp: expanded ? 'none' : 2,
-              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
               textOverflow: 'ellipsis',
-              overflow: expanded ? 'visible' : 'hidden',
-              cursor: 'pointer',
             }}
-            onClick={handleExpand}
           >
-            {productDescription}
+            {expanded ? (
+              <span>
+                {productDescription}
+                <Button onClick={handleExpand} sx={{ fontSize: '10px' }}>
+                  Show less
+                </Button>
+              </span>
+            ) : (
+              <span>
+                {`${productDescription.substring(0, 100)}...`}
+                <Button onClick={handleExpand} sx={{ fontSize: '10px' }}>
+                  Read more
+                </Button>
+              </span>
+            )}
           </Typography>
         </Stack>
       </Stack>

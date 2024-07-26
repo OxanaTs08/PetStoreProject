@@ -11,6 +11,7 @@ import BreadCrumbsComponent from '../components/organisms/BreadCrumbsComponent.j
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material';
 import BreadCrumbsMobile from '../components/organisms/BreadCrumbsMobile.jsx';
+import BackToTopButton from '../components/organisms/BackToTopBottom.jsx';
 
 const AllProducts = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const AllProducts = () => {
             </Grid>
           ))}
       </Grid>
+      <BackToTopButton />
     </Stack>
   );
 };

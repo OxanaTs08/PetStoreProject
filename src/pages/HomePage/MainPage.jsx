@@ -4,6 +4,7 @@ import MainButton from '../../components/organisms/MainButton';
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material';
+import BackToTopButton from '../../components/organisms/BackToTopBottom';
 
 const MainPage = () => {
   const theme = useTheme();
@@ -41,6 +42,7 @@ const MainPage = () => {
           />{' '}
         </NavLink>
       </Stack>
+      <BackToTopButton />
     </Box>
   );
 };
